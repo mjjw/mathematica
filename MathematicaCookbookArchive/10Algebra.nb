@@ -1,0 +1,3271 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     92951,       3262]
+NotebookOptionsPosition[     75489,       2719]
+NotebookOutlinePosition[     80871,       2858]
+CellTagsIndexPosition[     80489,       2846]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "CHAPTER ",
+ 
+ CounterBox["ChapterLabel"]
+}], "ChapterLabel",
+ CounterAssignments->{{"ChapterLabel", 10}},
+ CellTags->"chAlgebra"],
+
+Cell["Algebra", "ChapterTitle"],
+
+Cell["\<\
+When a problem comes along
+You must whip it
+Before the cream sits out too long
+You must whip it
+When something\[CloseCurlyQuote]s going wrong
+You must whip it
+
+Now whip it
+Into shape
+Shape it up
+Get straight
+Go forward
+Move ahead
+Try to detect it
+It\[CloseCurlyQuote]s not too late
+To whip it
+Whip it good\
+\>", "Epigraph",
+ CellChangeTimes->{{3.471024234185803*^9, 3.471024252342812*^9}, {
+   3.471028088098514*^9, 3.471028112343687*^9}, 3.471028242036989*^9}],
+
+Cell["Devo, \[OpenCurlyDoubleQuote]Whip It\[CloseCurlyDoubleQuote]", \
+"EpigraphAuthor",
+ CellChangeTimes->{{3.46598889504*^9, 3.4659888993710003`*^9}, {
+  3.4659911440480003`*^9, 3.465991171861*^9}, {3.4673685659642*^9, 
+  3.4673685748002*^9}, {3.4710242166498127`*^9, 3.471024225223748*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]",
+ "Introduction"
+}], "Heading1",
+ CellTags->"IntroductionCh10"],
+
+Cell[TextData[{
+ StyleBox["Algebra can be divided into elementary algebra and abstract \
+algebra. ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["Elementary algebra is",
+  FontTracking->"Plain"],
+ " the kind we all learned in high school. Mathematica is well equipped to \
+solve problems in elementary algebra, and many of the recipes in this chapter \
+show you how to leverage these features. Mathematica does not presently have \
+deep support for abstract algebra, which is concerned with constructs such as \
+groups, rings, and fields. However, there are third-party packages available \
+for exploring abstract algebra, and I provide references for those."
+}], "Text",
+ CellChangeTimes->{{3.4710243791854973`*^9, 3.471024419499721*^9}, {
+  3.471024449601871*^9, 3.4710244806276197`*^9}}],
+
+Cell[TextData[{
+ "Mathematica\[CloseCurlyQuote]s ability to do algebraic manipulation is \
+important for two reasons. First, many problems, although conceptually easy \
+to solve by hand, are tedious, and it makes sense to have Mathematica relieve \
+you of this drudgery. ",
+ ButtonBox["Recipe 10.1",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Solving Algebraic Equations"],
+ " shows you how to solve algebraic equations; ",
+ ButtonBox["Recipe 10.2",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Finding a Polynomial From a Given Root"],
+ " shows how to work backward from a root to a polynomial. However, helping \
+you solve algebraic equations is not the most important part of this chapter. \
+Rather, you will often find that Mathematica will not automatically give you \
+an answer in the form you desire. Knowing how to coax expressions into the \
+desired form is an important skill in your day-to-day ",
+ StyleBox["use of Mathematica. ",
+  FontTracking->"SemiCondensed"],
+ StyleBox[ButtonBox["Recipe 10.3",
+  BaseStyle->"Hyperlink",
+  ButtonData->"TransformingExpressions"],
+  FontTracking->"SemiCondensed"],
+ StyleBox[" is geared to helping you gain proficiency in this area. It is \
+easy e",
+  FontTracking->"SemiCondensed"],
+ StyleBox["nough to create a polynomial by typing input into Mathematica, but \
+if you want to gener",
+  FontTracking->"Plain"],
+ StyleBox["ate a polynomial of a specific form, ",
+  FontTracking->"SemiCondensed"],
+ StyleBox[ButtonBox["Recipe 10.4",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Generating Polynomials"],
+  FontTracking->"SemiCondensed"],
+ StyleBox[" will show you how. On the other ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["hand, if you need to break up a polynomial into parts to perform \
+some low-level\[LineSeparator]manipulations, you will want to look at ",
+  FontTracking->"Plain"],
+ StyleBox[ButtonBox["Recipe 10.5",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Decomposing Polynomials"],
+  FontTracking->"Plain"],
+ StyleBox[". Diving a bit deeper into abstraction, ",
+  FontTracking->"Plain"],
+ StyleBox[ButtonBox["Recipe 10.6",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Dividing Polynomials"],
+  FontTracking->"Plain"],
+ StyleBox[" investigates division and related operations on polynomials.",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.471024527476962*^9, 3.471024545275263*^9}, {
+   3.471024606054241*^9, 3.471024663511952*^9}, {3.47102469941048*^9, 
+   3.471024715354989*^9}, {3.4710251634023857`*^9, 3.4710252110824337`*^9}, {
+   3.4710281277606907`*^9, 3.471028129721521*^9}, {3.4710284630571327`*^9, 
+   3.4710284649292793`*^9}, 3.472210284381188*^9}],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Heading2"],
+
+Cell[TextData[{
+ "Allen C. Hibbard and Kenneth M. Levasseur have developed \
+\[OpenCurlyDoubleQuote]Exploring Abstract Algebra with Mathematica\
+\[CloseCurlyDoubleQuote] ",
+ StyleBox["(",
+  FontTracking->"Extended"],
+ StyleBox[ButtonBox["http://bit.ly/CHT9O",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://bit.ly/CHT9O"], None},
+  ButtonNote->"http://bit.ly/CHT9O"], "URL",
+  FontTracking->"Extended"],
+ StyleBox[")",
+  FontTracking->"Extended"],
+ StyleBox[", which can be freely down",
+  FontTracking->"Plain"],
+ StyleBox["loaded ",
+  FontTracking->"Extended"],
+ "after registering. "
+}], "Text",
+ CellChangeTimes->{{3.471025235419896*^9, 3.471025275549088*^9}, 
+   3.471028044097784*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]",
+ "Solving Algebraic Equations"
+}], "Heading1",
+ CellTags->"Solving Algebraic Equations"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell["You want to solve an algebraic equation for its unknowns. ", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Heading2"],
+
+Cell[TextData[{
+ "Use ",
+ StyleBox["Solve", "Literal"],
+ " with expressions of the form ",
+ StyleBox["left-hand-side", "UserInput"],
+ " ",
+ StyleBox["== right-hand-side", "UserInput"],
+ " and the unknown variable (or variables) provided as the second argument. \
+Results are returned as rules."
+}], "Text",
+ CellChangeTimes->{
+  3.4710255379134493`*^9, {3.475943150693185*^9, 3.475943151203703*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "2"}], " ", "-", " ", 
+     RowBox[{"2", "x"}], " ", "-", " ", "3"}], " ", "\[Equal]", " ", "0"}], 
+   ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", "3"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686508761997`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Solve", "Literal"],
+ " takes either a single expression, as above, or a list of expressions or \
+several expressions linked with ",
+ StyleBox["&&", "Literal"],
+ ". As you would expect, solutions can be found in symbolic form."
+}], "Text",
+ CellChangeTimes->{{3.471025548696982*^9, 3.47102556117411*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"a", " ", "x"}], "+", 
+       RowBox[{"2", "y"}]}], "\[Equal]", "7"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", " ", "b", " ", "x"}], "-", "y"}], "\[Equal]", "1"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x", "\[Rule]", 
+     FractionBox["9", 
+      RowBox[{"a", "+", 
+       RowBox[{"6", " ", "b"}]}]]}], ",", 
+    RowBox[{"y", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"a", "-", 
+        RowBox[{"21", " ", "b"}]}], 
+       RowBox[{"a", "+", 
+        RowBox[{"6", " ", "b"}]}]]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686509972*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"a", " ", "x"}], "-", 
+      RowBox[{"2", "y"}]}], "\[Equal]", "7"}], " ", "&&", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"2", " ", "b", " ", "x"}], "+", "y"}], "\[Equal]", "0"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x", "\[Rule]", 
+     FractionBox["7", 
+      RowBox[{"a", "+", 
+       RowBox[{"4", " ", "b"}]}]]}], ",", 
+    RowBox[{"y", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"14", " ", "b"}], 
+       RowBox[{"a", "+", 
+        RowBox[{"4", " ", "b"}]}]]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686510182*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2", "TopOfPage"],
+
+Cell[TextData[{
+ StyleBox["Solve", "Literal"],
+ " works best with linear and polynomial equations. For expressions involving \
+constraints, inequalities, or non-algebraic expressions, you should use ",
+ StyleBox["Reduce", "Literal"],
+ ".",
+ " (",
+ "In Mathematica 8.0, ",
+ StyleBox["Solve", "Literal"],
+ " will be enhanced to cover a much larger class of problems, thus reducing \
+the need to ",
+ StyleBox["Reduce", "Literal"],
+ "!) "
+}], "Text",
+ CellChangeTimes->{{3.4673651977494*^9, 3.4673653075123997`*^9}, {
+   3.471025611479192*^9, 3.4710256302886887`*^9}, {3.471025660654018*^9, 
+   3.471025672903305*^9}, 3.472210815079776*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", " ", ">", " ", "0"}], " ", "&&", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "^", "2"}], " ", "-", " ", 
+      RowBox[{"2", "x"}], " ", "-", " ", "3"}], " ", "\[Equal]", " ", "0"}]}],
+    ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"x", "\[Equal]", "3"}]], "Output",
+ CellChangeTimes->{3.4673686512692003`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Reduce", "Literal",
+  FontTracking->"SemiCondensed"],
+ StyleBox[" does not use rules because it may need to express solutions in \
+terms of intervals.",
+  FontTracking->"SemiCondensed"]
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", " ", ">", " ", "0"}], " ", "&&", " ", 
+    RowBox[{
+     RowBox[{"x", "^", "2"}], " ", "<", "2"}]}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"0", "<", "x", "<", 
+  SqrtBox["2"]}]], "Output",
+ CellChangeTimes->{3.4673686513422003`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["FindRoot", "Literal"],
+ " is appropriate when you are looking for numerical solutions and have \
+provided a starting point where you want Mathematica to search. ",
+ StyleBox["FindRoot", "Literal"],
+ " is a numerical method, so it can solve a larger class of expressions then ",
+ StyleBox["Solve", "Literal"],
+ ", although it is not guaranteed to converge. "
+}], "Text",
+ CellChangeTimes->{{3.47102570826432*^9, 3.4710257284179373`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindRoot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "2"}], " ", "-", " ", 
+     RowBox[{"2", "x"}], " ", "-", " ", "3"}], " ", "\[Equal]", " ", "0"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "3"}]}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"x", "\[Rule]", 
+   RowBox[{"-", "1.0000000000000022`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686516991997`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindRoot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "2"}], " ", "-", " ", 
+     RowBox[{"Exp", "[", 
+      RowBox[{"2", "x"}], "]"}], " ", "-", " ", "3"}], " ", "\[Equal]", " ", 
+    "x"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"x", "\[Rule]", 
+   RowBox[{"-", "1.3223677291114646`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686517472*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]Finding a Polynomial from a Given Root"
+}], "Heading1",
+ CellChangeTimes->{3.471025931912415*^9},
+ CellTags->"Finding a Polynomial From a Given Root"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell[TextData[{
+ StyleBox["You have an ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["algebraic number", "Techical Italic",
+  FontTracking->"SemiCondensed"],
+ StyleBox[" and you want a polynomial t",
+  FontTracking->"SemiCondensed"],
+ StyleBox["hat has the number among its roots. This is the opposite of ",
+  FontTracking->"Plain"],
+ StyleBox["Solve", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", which finds the roots given a polynomial.",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{3.471025946642218*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Heading2"],
+
+Cell[TextData[{
+ "Use ",
+ StyleBox["MinimalPolynomial", "Literal"],
+ " to find the minimal polynomial (least degree) with the given value as a \
+root."
+}], "Text",
+ CellChangeTimes->{{3.471025971009083*^9, 3.471025991775321*^9}, 
+   3.4710261753358517`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"poly", " ", "=", 
+  RowBox[{"MinimalPolynomial", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sqrt", "[", "2", "]"}], " ", "+", " ", 
+     RowBox[{"Sqrt", "[", "5", "]"}]}], ",", "x"}], "]"}]}]], "Input",
+ CellChangeTimes->{3.4722107833997726`*^9}],
+
+Cell[BoxData[
+ RowBox[{"9", "-", 
+  RowBox[{"14", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  SuperscriptBox["x", "4"]}]], "Output",
+ CellChangeTimes->{3.4673686518922*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Last", "[", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{"poly", " ", "\[Equal]", " ", "0"}], ",", "x"}], "]"}], "]"}], 
+  " ", "//", "FullSimplify"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"x", "\[Rule]", 
+   RowBox[{
+    SqrtBox["2"], "+", 
+    SqrtBox["5"]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686525322*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2", "TopOfPage"],
+
+Cell["As you would expect, complex numbers are allowed.", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{
+   RowBox[{"2", "+", "I"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"5", "-", 
+  RowBox[{"4", " ", "x"}], "+", 
+  SuperscriptBox["x", "2"]}]], "Output",
+ CellChangeTimes->{3.4673686525732*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Numbers must be ",
+ StyleBox["explicitly", "Emphasis"],
+ " algebraic or you will get an error. Trying to use ",
+ StyleBox["Minimal", "Literal"],
+ StyleBox["\[DiscretionaryHyphen]P", "Literal",
+  FontTracking->"Extended"],
+ StyleBox["olynomial", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" with Pi is doomed,",
+  FontTracking->"Plain"],
+ StyleBox[" ",
+  FontTracking->"Extended"],
+ StyleBox["since Pi is a transcendental",
+  FontTracking->"Plain"],
+ StyleBox[" number, but a rational ap",
+  FontTracking->"Extended"],
+ "proximation of Pi fails as well because it is not explicitly algebraic."
+}], "Text",
+ CellChangeTimes->{{3.471026194461151*^9, 3.4710262530705833`*^9}, {
+  3.47102866451438*^9, 3.4710286665176373`*^9}, {3.472210871307859*^9, 
+  3.472210881616562*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{"Pi", ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MinimalPolynomial", "::", "\<\"nalg\"\>"}], ":", 
+  " ", "\<\"\[NoBreak]\\!\\(\\*StyleBox[\\!\\(\[Pi]\\), \\\"MT\\\"]\\)\
+\[NoBreak]\\!\\(\\*StyleBox[\\\"\\\\\\\" is not an explicit algebraic number.\
+\\\\\\\"\\\", \\\"MT\\\"]\\) \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/nalg\\\", ButtonNote -> \
+\\\"MinimalPolynomial::nalg\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.4673686527651997`*^9}],
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{"\[Pi]", ",", "x"}], "]"}]], "Output",
+ CellChangeTimes->{3.4673686527682*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{"3.14", ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MinimalPolynomial", "::", "\<\"nalg\"\>"}], ":", 
+  " ", "\<\"\[NoBreak]\\!\\(\\*StyleBox[\\!\\(3.14`\\), \\\"MT\\\"]\\)\
+\[NoBreak]\\!\\(\\*StyleBox[\\\"\\\\\\\" is not an explicit algebraic number.\
+\\\\\\\"\\\", \\\"MT\\\"]\\) \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/nalg\\\", ButtonNote -> \
+\\\"MinimalPolynomial::nalg\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.4673686528361998`*^9}],
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{"3.14`", ",", "x"}], "]"}]], "Output",
+ CellChangeTimes->{3.4673686528402*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Use ",
+ StyleBox["Rationalize", "Literal"],
+ " to work around this limitation."
+}], "Text",
+ CellChangeTimes->{{3.47102626395077*^9, 3.471026264266965*^9}, {
+  3.472211158431072*^9, 3.472211158689314*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MinimalPolynomial", "[", 
+  RowBox[{
+   RowBox[{"Rationalize", "[", "3.14", "]"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "157"}], "+", 
+  RowBox[{"50", " ", "x"}]}]], "Output",
+ CellChangeTimes->{3.472211123742201*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]",
+ "Transforming Expressions to Other Forms"
+}], "Heading1",
+ CellChangeTimes->{3.44595329296875*^9},
+ CellTags->"TransformingExpressions"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell[TextData[{
+ "You have a symbolic expression that you would like to transform to a \
+different form. This problem often arises when you get a result from a \
+Mathematica computation ",
+ StyleBox["that is in a form you don\[CloseCurlyQuote]t want. One common \
+requirement",
+  FontTracking->"SemiCondensed"],
+ StyleBox[" is to simplify the expression.",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.445953299734375*^9, 3.445953312578125*^9}, {
+   3.445953376125*^9, 3.445953420859375*^9}, {3.44595349525*^9, 
+   3.44595359028125*^9}, {3.44602732378125*^9, 3.446027362140625*^9}, {
+   3.44612220940625*^9, 3.446122214828125*^9}, 3.471028139764893*^9}]
+}, Open  ]],
+
+Cell["Solution", "Heading2", "ProductionPageBreak"],
+
+Cell[TextData[{
+ StyleBox["The two most important symbolic transformations are ",
+  FontTracking->"Plain"],
+ StyleBox["Simplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" and ",
+  FontTracking->"Plain"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[". These functions attempt to apply algebraic and other \
+transformations to an expression that will convert it to an equivalent form \
+tha",
+  FontTracking->"Plain"],
+ StyleBox["t contains fewer symbols. The main",
+  FontTracking->"Extended"],
+ StyleBox[" difference between ",
+  FontTracking->"Plain"],
+ StyleBox["Simplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" and ",
+  FontTracking->"Plain"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" is that ",
+  FontTracking->"Plain"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" will consider a much larger set of transformations, including \
+special functions. As a result, ",
+  FontTracking->"Plain"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" is often more effective but also slower.",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.4459535964375*^9, 3.445953831796875*^9}, 
+   3.446025570953125*^9, 3.446122218078125*^9, 3.471026281807213*^9, {
+   3.4710287070590763`*^9, 3.471028714232753*^9}}],
+
+Cell[TextData[{
+ StyleBox["Here ",
+  FontTracking->"Extended"],
+ StyleBox["Simplify", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[" and ",
+  FontTracking->"Extended"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[" ultimately arrive at the same answer, but ",
+  FontTracking->"Extended"],
+ StyleBox["FullSimplify", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[" takes well over a minute, ",
+  FontTracking->"Extended"],
+ StyleBox["whereas ",
+  FontTracking->"Plain"],
+ StyleBox["Simplify", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" completes in just ove",
+  FontTracking->"Plain"],
+ StyleBox["r a ",
+  FontTracking->"Extended"],
+ "second."
+}], "Text",
+ CellChangeTimes->{{3.44595411353125*^9, 3.445954183234375*^9}, {
+   3.44595433828125*^9, 3.4459543396875*^9}, 3.446122220625*^9, {
+   3.47102630260926*^9, 3.471026315385304*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Timing", "[", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"x", " ", "+", " ", "y", " ", "+", " ", "z"}], ")"}], "^", 
+      "2"}], "]"}], 
+    RowBox[{"Cos", "[", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"z", " ", "+", " ", "y", " ", "+", " ", "x"}], ")"}], "^", 
+      "2"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.44595384628125*^9, 3.4459539089375*^9}, {
+  3.44595393984375*^9, 3.44595395146875*^9}, {3.445953994484375*^9, 
+  3.445953999140625*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.764`", ",", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"2", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "+", "y", "+", "z"}], ")"}], "2"]}], "]"}]}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.4673686535762*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Timing", "[", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"x", " ", "+", " ", "y", " ", "+", " ", "z"}], ")"}], "^", 
+      "2"}], "]"}], 
+    RowBox[{"Cos", "[", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"z", " ", "+", " ", "y", " ", "+", " ", "x"}], ")"}], "^", 
+      "2"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.445953896203125*^9, 3.445953917984375*^9}, 
+   3.445953981375*^9, {3.445954014*^9, 3.4459540186875*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"38.626000000000005`", ",", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"2", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "+", "y", "+", "z"}], ")"}], "2"]}], "]"}]}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.4673686925122004`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2"],
+
+Cell[TextData[{
+ StyleBox["Simplify", "Literal"],
+ " and ",
+ StyleBox["FullSimplify", "Literal"],
+ " perform fully automated simplification. However, you sometimes want to \
+apply more targeted transformations. For example, a common transformation is \
+to bring together a sum over a common denominator."
+}], "Text",
+ CellChangeTimes->{{3.445954262984375*^9, 3.445954272*^9}, {
+  3.445954305484375*^9, 3.4459544836875*^9}, {3.446122223734375*^9, 
+  3.446122235359375*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Together", "[", 
+  RowBox[{
+   RowBox[{"a", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"a", "^", "2"}], "+", 
+      RowBox[{"b", "^", "2"}], "+", 
+      RowBox[{"c", "^", "2"}]}], ")"}]}], " ", "+", 
+   RowBox[{"b", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"a", "^", "2"}], "+", 
+      RowBox[{"b", "^", "2"}], "+", 
+      RowBox[{"c", "^", "2"}]}], ")"}]}], " ", "+", " ", 
+   RowBox[{"c", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"a", "^", "2"}], "+", 
+      RowBox[{"b", "^", "2"}], "+", 
+      RowBox[{"c", "^", "2"}]}], ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.445954488453125*^9, 3.445954536484375*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"a", "+", "b", "+", "c"}], 
+  RowBox[{
+   SuperscriptBox["a", "2"], "+", 
+   SuperscriptBox["b", "2"], "+", 
+   SuperscriptBox["c", "2"]}]]], "Output",
+ CellChangeTimes->{3.4673686925652*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Apart", "Literal"],
+ " is another useful transformation that represents an expression as sums of \
+partial fractions."
+}], "Text",
+ CellChangeTimes->{{3.445954634390625*^9, 3.445954659625*^9}, {
+  3.4459548600625*^9, 3.445954875796875*^9}, {3.471026337186256*^9, 
+  3.471026344046682*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Apart", "[", 
+  RowBox[{"4", "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "+", "x"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"5", "+", "x"}], ")"}]}], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.445954570046875*^9, 3.445954574125*^9}, {
+  3.445954662203125*^9, 3.445954711171875*^9}, {3.4459547860625*^9, 
+  3.445954830640625*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{"1", "+", "x"}]], "-", 
+  FractionBox["1", 
+   RowBox[{"5", "+", "x"}]]}]], "Output",
+ CellChangeTimes->{3.4673686925861998`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Polynomial transformations are a very important class, exemplified by \
+functions like ",
+ StyleBox["Factor", "Literal"],
+ ", ",
+ StyleBox["FactorTerms", "Literal"],
+ ", ",
+ StyleBox["FactorSquareFree", "Literal"],
+ ", ",
+ StyleBox["Expand", "Literal"],
+ ", and ",
+ StyleBox["ExpandAll", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.445954927984375*^9, 3.445954988421875*^9}, {
+   3.4459550751875*^9, 3.445955088515625*^9}, {3.445964424296875*^9, 
+   3.44596443075*^9}, {3.4459908631875*^9, 3.445990873203125*^9}, {
+   3.446025332640625*^9, 3.446025411*^9}, 3.446122243609375*^9, {
+   3.471026376392955*^9, 3.4710263781623383`*^9}, {3.471026469312969*^9, 
+   3.471026485398713*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Factor", "[", 
+  RowBox[{"21", "-", 
+   RowBox[{"4", " ", "x"}], "-", 
+   SuperscriptBox["x", "2"]}], "]"}]], "Input",
+ CellChangeTimes->{{3.445955092375*^9, 3.445955147234375*^9}, 
+   3.4459552273125*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "3"}], "+", "x"}], ")"}]}], " ", 
+  RowBox[{"(", 
+   RowBox[{"7", "+", "x"}], ")"}]}]], "Output",
+ CellChangeTimes->{3.4673686926082*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Expand", "Literal"],
+ " is the opposite of ",
+ StyleBox["Factor", "Literal"],
+ " and expands out sums of products and positive powers."
+}], "Text", "ProductionPageBreak",
+ CellChangeTimes->{{3.4459552915625*^9, 3.445955296140625*^9}, {
+  3.4459555018125*^9, 3.445955563859375*^9}, {3.4459639161875*^9, 
+  3.44596391790625*^9}, {3.446025222796875*^9, 3.4460252575*^9}, {
+  3.471026513312615*^9, 3.4710265152536697`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Expand", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.445955247109375*^9, 3.4459552644375*^9}}],
+
+Cell[BoxData[
+ RowBox[{"21", "-", 
+  RowBox[{"4", " ", "x"}], "-", 
+  SuperscriptBox["x", "2"]}]], "Output",
+ CellChangeTimes->{3.4673686926292*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Expand", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"1", "+", "x"}], ")"}], "^", "5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.445955568078125*^9, 3.4459555845*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1", "+", 
+  RowBox[{"5", " ", "x"}], "+", 
+  RowBox[{"10", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"10", " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{"5", " ", 
+   SuperscriptBox["x", "4"]}], "+", 
+  SuperscriptBox["x", "5"]}]], "Output",
+ CellChangeTimes->{3.4673686926502*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Factor", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.445955591515625*^9, 3.445955599140625*^9}}],
+
+Cell[BoxData[
+ SuperscriptBox[
+  RowBox[{"(", 
+   RowBox[{"1", "+", "x"}], ")"}], "5"]], "Output",
+ CellChangeTimes->{3.4673686926722*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["ExpandAll", "Literal"],
+ " is similar to ",
+ StyleBox["Expand", "Literal"],
+ " but reaches in deeper into the expression, for example, into arguments of \
+functions like ",
+ StyleBox["Sin", "Literal"],
+ " or ",
+ StyleBox["Exp", "Literal"],
+ ". Notice how ",
+ StyleBox["Expand", "Literal"],
+ " has no effect on a nested polynomial but ",
+ StyleBox["ExpandAll", "Literal"],
+ " does."
+}], "Text",
+ CellChangeTimes->{{3.4710264126799297`*^9, 3.471026441596181*^9}, 
+   3.4722113561114063`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Expand", "[", 
+  RowBox[{"Sin", "[", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}], "5"], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.44602543478125*^9, 3.446025448640625*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", 
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{"1", "+", "x"}], ")"}], "5"], "]"}]], "Output",
+ CellChangeTimes->{3.4673686926921997`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ExpandAll", "[", 
+  RowBox[{"Sin", "[", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}], "5"], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.446025515625*^9, 3.446025516640625*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", 
+  RowBox[{"1", "+", 
+   RowBox[{"5", " ", "x"}], "+", 
+   RowBox[{"10", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"10", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"5", " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   SuperscriptBox["x", "5"]}], "]"}]], "Output",
+ CellChangeTimes->{3.4673686927142*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "You can also narrow the scope of ",
+ StyleBox["Expand", "Literal"],
+ " to the numerator or denominator of a rational expression using ",
+ StyleBox["ExpandNumerator", "Literal"],
+ " and ",
+ StyleBox["ExpandDenominator", "Literal"],
+ ", respectively."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"expr", " ", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", "x"}], ")"}], "^", "3"}], " ", "/", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"3", "+", "x"}], ")"}], "^", "4"}]}]}], "}"}], ",", " ", 
+   RowBox[{"Row", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ExpandNumerator", "[", "expr", "]"}], ",", 
+       RowBox[{"ExpandDenominator", "[", "expr", "]"}]}], "}"}], " ", ",", 
+     " ", 
+     RowBox[{"Invisible", "[", "expr", "]"}]}], "]"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ TemplateBox[{FractionBox[
+    RowBox[{"1", "+", 
+      RowBox[{"3", " ", "x"}], "+", 
+      RowBox[{"3", " ", 
+        SuperscriptBox["x", "2"]}], "+", 
+      SuperscriptBox["x", "3"]}], 
+    SuperscriptBox[
+     RowBox[{"(", 
+       RowBox[{"3", "+", "x"}], ")"}], "4"]],FractionBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+       RowBox[{"1", "+", "x"}], ")"}], "3"], 
+    RowBox[{"81", "+", 
+      RowBox[{"108", " ", "x"}], "+", 
+      RowBox[{"54", " ", 
+        SuperscriptBox["x", "2"]}], "+", 
+      RowBox[{"12", " ", 
+        SuperscriptBox["x", "3"]}], "+", 
+      SuperscriptBox["x", "4"]}]]},
+  "Row",
+  DisplayFunction->(RowBox[{#, 
+     StyleBox[
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+          RowBox[{"1", "+", "x"}], ")"}], "3"], 
+       SuperscriptBox[
+        RowBox[{"(", 
+          RowBox[{"3", "+", "x"}], ")"}], "4"]], ShowContents -> False, 
+      StripOnInput -> False], #2}]& ),
+  InterpretationFunction->(RowBox[{"Row", "[", 
+     RowBox[{
+       RowBox[{"{", 
+         RowBox[{#, ",", #2}], "}"}], ",", 
+       StyleBox[
+        FractionBox[
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{"1", "+", "x"}], ")"}], "3"], 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{"3", "+", "x"}], ")"}], "4"]], ShowContents -> False, 
+        StripOnInput -> False]}], "]"}]& )]], "Output",
+ CellChangeTimes->{3.4673686927362003`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Collect", "Literal"],
+ " does the job of ",
+ StyleBox["Expand", "Literal"],
+ " but also collects terms of matching powers of some variable. Compare the \
+results of ",
+ StyleBox["Expand", "Literal"],
+ " and ",
+ StyleBox["Collect", "Literal"],
+ " given here."
+}], "Text",
+ CellChangeTimes->{{3.471026532348372*^9, 3.4710265347102747`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Expand", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"a", " ", "+", "x"}], ")"}], "^", "2"}], 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"b", "+", "x"}], ")"}], "^", "3"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox["a", "2"], " ", 
+   SuperscriptBox["b", "3"]}], "+", 
+  RowBox[{"3", " ", 
+   SuperscriptBox["a", "2"], " ", 
+   SuperscriptBox["b", "2"], " ", "x"}], "+", 
+  RowBox[{"2", " ", "a", " ", 
+   SuperscriptBox["b", "3"], " ", "x"}], "+", 
+  RowBox[{"3", " ", 
+   SuperscriptBox["a", "2"], " ", "b", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"6", " ", "a", " ", 
+   SuperscriptBox["b", "2"], " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox["b", "3"], " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox["a", "2"], " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{"6", " ", "a", " ", "b", " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{"3", " ", 
+   SuperscriptBox["b", "2"], " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{"2", " ", "a", " ", 
+   SuperscriptBox["x", "4"]}], "+", 
+  RowBox[{"3", " ", "b", " ", 
+   SuperscriptBox["x", "4"]}], "+", 
+  SuperscriptBox["x", "5"]}]], "Output",
+ CellChangeTimes->{3.4673686927592*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Collect", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", " ", "+", "x"}], ")"}], "^", "2"}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"b", "+", "x"}], ")"}], "^", "3"}]}], ",", "x"}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox["a", "2"], " ", 
+   SuperscriptBox["b", "3"]}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"3", " ", 
+      SuperscriptBox["a", "2"], " ", 
+      SuperscriptBox["b", "2"]}], "+", 
+     RowBox[{"2", " ", "a", " ", 
+      SuperscriptBox["b", "3"]}]}], ")"}], " ", "x"}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"3", " ", 
+      SuperscriptBox["a", "2"], " ", "b"}], "+", 
+     RowBox[{"6", " ", "a", " ", 
+      SuperscriptBox["b", "2"]}], "+", 
+     SuperscriptBox["b", "3"]}], ")"}], " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     SuperscriptBox["a", "2"], "+", 
+     RowBox[{"6", " ", "a", " ", "b"}], "+", 
+     RowBox[{"3", " ", 
+      SuperscriptBox["b", "2"]}]}], ")"}], " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", " ", "a"}], "+", 
+     RowBox[{"3", " ", "b"}]}], ")"}], " ", 
+   SuperscriptBox["x", "4"]}], "+", 
+  SuperscriptBox["x", "5"]}]], "Output",
+ CellChangeTimes->{3.4673686928252*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["FactorTerms", "Literal"],
+ " factors out numerical terms or terms that do not depend on particular \
+variables."
+}], "Text",
+ CellChangeTimes->{{3.445964477328125*^9, 3.445964492953125*^9}, {
+   3.445964531625*^9, 3.445964565859375*^9}, 3.446122257421875*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FactorTerms", "[", 
+  RowBox[{"Expand", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"3", " ", "+", " ", 
+      RowBox[{"3", " ", "x"}]}], ")"}], "^", "5"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.445964731265625*^9, 3.445964739078125*^9}, {
+  3.445965178703125*^9, 3.445965198109375*^9}}],
+
+Cell[BoxData[
+ RowBox[{"243", " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", 
+    RowBox[{"5", " ", "x"}], "+", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["x", "2"]}], "+", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["x", "3"]}], "+", 
+    RowBox[{"5", " ", 
+     SuperscriptBox["x", "4"]}], "+", 
+    SuperscriptBox["x", "5"]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.4673686928462*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Expand", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"y", " ", "+", " ", 
+     RowBox[{"y", " ", "x"}]}], ")"}], "^", "5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4459646779375*^9, 3.44596468896875*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["y", "5"], "+", 
+  RowBox[{"5", " ", "x", " ", 
+   SuperscriptBox["y", "5"]}], "+", 
+  RowBox[{"10", " ", 
+   SuperscriptBox["x", "2"], " ", 
+   SuperscriptBox["y", "5"]}], "+", 
+  RowBox[{"10", " ", 
+   SuperscriptBox["x", "3"], " ", 
+   SuperscriptBox["y", "5"]}], "+", 
+  RowBox[{"5", " ", 
+   SuperscriptBox["x", "4"], " ", 
+   SuperscriptBox["y", "5"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "5"], " ", 
+   SuperscriptBox["y", "5"]}]}]], "Output",
+ CellChangeTimes->{3.4673686928691998`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FactorTerms", "[", 
+  RowBox[{"%", ",", "y"}], "]"}]], "Input",
+ CellChangeTimes->{{3.44596459834375*^9, 3.445964651015625*^9}, {
+  3.445964707640625*^9, 3.445964713671875*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"1", "+", 
+    RowBox[{"5", " ", "x"}], "+", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["x", "2"]}], "+", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["x", "3"]}], "+", 
+    RowBox[{"5", " ", 
+     SuperscriptBox["x", "4"]}], "+", 
+    SuperscriptBox["x", "5"]}], ")"}], " ", 
+  SuperscriptBox["y", "5"]}]], "Output",
+ CellChangeTimes->{3.4673686928912*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Another important class of transformations are trigonometric \
+transformations. These include ",
+ StyleBox["TrigFactor", "Literal"],
+ ", ",
+ StyleBox["TrigExpand", "Literal"],
+ ", ",
+ StyleBox["TrigExpandAll", "Literal"],
+ ", and ",
+ StyleBox["TrigReduce", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.446025814765625*^9, 3.4460258739375*^9}, {
+   3.44602600084375*^9, 3.446026063046875*^9}, 3.44612226259375*^9, 
+   3.471026906393092*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TrigFactor", "[", 
+  RowBox[{"Sin", "[", 
+   RowBox[{"3", " ", "x"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4460263100625*^9, 3.446026321578125*^9}, {
+  3.446026364078125*^9, 3.446026378328125*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"1", "+", 
+    RowBox[{"2", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}]}], ")"}], " ", 
+  RowBox[{"Sin", "[", "x", "]"}]}]], "Output",
+ CellChangeTimes->{3.4673686929432*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["TrigExpand", "Literal"],
+ " removes sums and products inside arguments by expanding the expression \
+using trigonometric identities."
+}], "Text",
+ CellChangeTimes->{{3.446026756375*^9, 3.446026861265625*^9}, 
+   3.4461222651875*^9, {3.471026972932078*^9, 3.471026986465632*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TrigExpand", "[", 
+  RowBox[{"Sin", "[", 
+   RowBox[{
+    RowBox[{"3", " ", "x"}], " ", "+", " ", "1"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.446026334171875*^9, 3.446026374875*^9}, {
+  3.44602671415625*^9, 3.446026717546875*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "3"], " ", 
+   RowBox[{"Sin", "[", "1", "]"}]}], "+", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "2"], " ", 
+   RowBox[{"Sin", "[", "x", "]"}]}], "-", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "x", "]"}], " ", 
+   RowBox[{"Sin", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "2"]}], "-", 
+  RowBox[{
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "3"]}]}]], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.4673686929662*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "3"], " ", 
+   RowBox[{"Sin", "[", "1", "]"}]}], "+", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "2"], " ", 
+   RowBox[{"Sin", "[", "x", "]"}]}], "-", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "x", "]"}], " ", 
+   RowBox[{"Sin", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "2"]}], "-", 
+  RowBox[{
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "3"]}]}]], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "3"], " ", 
+   RowBox[{"Sin", "[", "1", "]"}]}], "+", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Cos", "[", "x", "]"}], "2"], " ", 
+   RowBox[{"Sin", "[", "x", "]"}]}], "-", 
+  RowBox[{"3", " ", 
+   RowBox[{"Cos", "[", "x", "]"}], " ", 
+   RowBox[{"Sin", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "2"]}], "-", 
+  RowBox[{
+   RowBox[{"Cos", "[", "1", "]"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "3"]}]}]], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.446026348703125*^9, 3.446026375359375*^9}, {
+  3.446026719453125*^9, 3.446026748484375*^9}}],
+
+Cell[TextData[{
+ StyleBox["TrigReduce", "Literal"],
+ " transforms an expression so that it is linear in the trigonometric terms \
+(no powers or multiplications of two different trig functions)."
+}], "Text",
+ CellChangeTimes->{{3.44602644434375*^9, 3.44602656565625*^9}, 
+   3.446122270328125*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TrigReduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{"3", " ", "x"}], "]"}], "^", "2"}], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"2", " ", "x"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.44602626746875*^9, 3.446026293671875*^9}, {
+  3.446026470015625*^9, 3.44602647046875*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "4"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"2", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}], "-", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"4", " ", "x"}], "]"}], "-", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"8", " ", "x"}], "]"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.4673686929902*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Heading2"],
+
+Cell[TextData[{
+ StyleBox["Mathematica has quite a few specialized functions for manipulating \
+polynomials and ex",
+  FontTracking->"Plain"],
+ StyleBox["tracting portions of their structure. See ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["tutorial/AlgebraicOperationsOnPolynomials", "URL",
+  FontTracking->"SemiCondensed"],
+ " in the documentation. "
+}], "Text",
+ CellChangeTimes->{{3.4460260921875*^9, 3.446026199875*^9}, 
+   3.446122274546875*^9, 3.47102804580201*^9}],
+
+Cell[TextData[{
+ StyleBox["A complete overview of algebraic manipulations can be found at ",
+  FontTracking->"Plain"],
+ StyleBox["tutorial/Algebraic \
+\[LineSeparator]\[DiscretionaryHyphen]ManipulationOverview", "URL",
+  FontTracking->"Plain"],
+ StyleBox[".",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.446026219390625*^9, 3.446026247015625*^9}, 
+   3.446122282125*^9, 3.472211536667831*^9, {3.476015954005642*^9, 
+   3.476015964678072*^9}, {3.476557045006678*^9, 3.476557054690425*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]",
+ "Generating Polynomials"
+}], "Heading1",
+ CellTags->"Generating Polynomials"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell["You want to generate a polynomial of a specific degree.", "Text",
+ CellChangeTimes->{3.4710270121427717`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Heading2", "TopOfPage"],
+
+Cell[TextData[{
+ StyleBox["A simple ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["solution uses ",
+  FontTracking->"Plain"],
+ StyleBox["Sum", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" and ",
+  FontTracking->"Plain"],
+ StyleBox["Subscript", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[". Here I generate a fourth-degree polynomial.",
+  FontTracking->"SemiCondensed"]
+}], "Text",
+ CellChangeTimes->{{3.4710270174005337`*^9, 3.4710270316531477`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Sum", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Subscript", "[", 
+     RowBox[{"a", ",", "i"}], "]"}], 
+    RowBox[{"x", "^", "i"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "0", ",", "4"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["a", "0"], "+", 
+  RowBox[{"x", " ", 
+   SubscriptBox["a", "1"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "2"], " ", 
+   SubscriptBox["a", "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "3"], " ", 
+   SubscriptBox["a", "3"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "4"], " ", 
+   SubscriptBox["a", "4"]}]}]], "Output",
+ CellChangeTimes->{3.4673686930151997`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2"],
+
+Cell[TextData[{
+ "If, other than the degree, you don\[CloseCurlyQuote]t care about the \
+particular form of the polynomial, then the solution is fine. However, if you \
+want to specify the coefficients, you can generate a polynomial with ",
+ StyleBox["Dot", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.471027043639477*^9, 3.471027065309441*^9}, 
+   3.471028143863154*^9}],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "makePoly", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"makePoly", ",", "HoldRest"}], "]"}], ";", 
+  RowBox[{
+   RowBox[{"makePoly", "[", 
+    RowBox[{"coef_List", ",", 
+     RowBox[{"var_:", "x"}]}], "]"}], " ", ":=", " ", 
+   RowBox[{"Dot", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"var", "^", "i"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "0", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "coef", "]"}], "-", "1"}]}], "}"}]}], "]"}], 
+     ",", "coef"}], "]"}]}]}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makePoly", "[", 
+  RowBox[{"{", 
+   RowBox[{"a", ",", "b", ",", "c", ",", "d", ",", "e"}], "}"}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"a", "+", 
+  RowBox[{"b", " ", "x"}], "+", 
+  RowBox[{"c", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"d", " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{"e", " ", 
+   SuperscriptBox["x", "4"]}]}]], "Output",
+ CellChangeTimes->{3.4673686930632*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Here I specify a variable other than ",
+ StyleBox["x", "Emphasis"],
+ "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makePoly", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"a", ",", "b", ",", "c", ",", "d", ",", "e"}], "}"}], ",", "z"}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"a", "+", 
+  RowBox[{"b", " ", "z"}], "+", 
+  RowBox[{"c", " ", 
+   SuperscriptBox["z", "2"]}], "+", 
+  RowBox[{"d", " ", 
+   SuperscriptBox["z", "3"]}], "+", 
+  RowBox[{"e", " ", 
+   SuperscriptBox["z", "4"]}]}]], "Output",
+ CellChangeTimes->{3.4673686930861998`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Many mathematics textbooks show polynomials from highest to lowest degree, \
+and you may want to generate and display your polynomials in this order as \
+well. Replace ",
+ StyleBox["Dot", "Literal"],
+ " with ",
+ StyleBox["Inner", "Literal"],
+ " and use ",
+ StyleBox["HoldForm", "Literal"],
+ " so the sum is not reordered by Mathematica. Note how I changed ",
+ StyleBox["Table", "Literal"],
+ " to generate terms from highest degree to lowest."
+}], "Text",
+ CellChangeTimes->{{3.471027085986253*^9, 3.471027112829639*^9}, {
+  3.47102734011273*^9, 3.471027354665785*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "makePoly2", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"makePoly2", ",", "HoldRest"}], "]"}], ";", 
+  RowBox[{
+   RowBox[{"makePoly2", "[", 
+    RowBox[{"coef_List", ",", 
+     RowBox[{"var_:", "x"}]}], "]"}], " ", ":=", " ", 
+   RowBox[{"Inner", "[", 
+    RowBox[{"Times", ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"var", "^", "i"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "coef", "]"}], "-", "1"}], ",", "0", ",", 
+         RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", "coef", ",", 
+     RowBox[{
+      RowBox[{"HoldForm", "[", 
+       RowBox[{"Plus", "[", "##", "]"}], "]"}], "&"}]}], "]"}]}]}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makePoly2", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"a", ",", "b", ",", "c", ",", "d", ",", "e"}], "}"}], ",", "z"}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   RowBox[{"a", " ", 
+    SuperscriptBox["z", "4"]}], "+", 
+   RowBox[{"b", " ", 
+    SuperscriptBox["z", "3"]}], "+", 
+   RowBox[{"c", " ", 
+    SuperscriptBox["z", "2"]}], "+", 
+   RowBox[{"d", " ", "z"}], "+", "e"}],
+  HoldForm]], "Output",
+ CellChangeTimes->{3.4673686931142*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]Decomposing Polynomials into Their Constituent \
+Parts"
+}], "Heading1",
+ CellChangeTimes->{3.471027361808096*^9},
+ CellTags->"Decomposing Polynomials"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell["\<\
+You want to extract a list of coefficients, monomials, or variables from a \
+given polynomial.\
+\>", "Text",
+ CellChangeTimes->{{3.4710273754292517`*^9, 3.4710273787703953`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Heading2", "TopOfPage"],
+
+Cell[TextData[{
+ StyleBox["Two useful primitives for decomposing polynomials are ",
+  FontTracking->"Plain"],
+ StyleBox["CoefficientList", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" and ",
+  FontTracking->"Plain"],
+ StyleBox["Monomial\[DiscretionaryHyphen]List", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[". First I generate a polynomi",
+  FontTracking->"Plain"],
+ StyleBox["al, per ",
+  FontTracking->"Plain",
+  FontColor->GrayLevel[0]],
+ StyleBox[ButtonBox["Recipe 10.4",
+  BaseStyle->"Hyperlink",
+  ButtonData->"Generating Polynomials"],
+  FontTracking->"Plain"],
+ StyleBox[".",
+  FontTracking->"Plain",
+  FontColor->GrayLevel[0]],
+ StyleBox[" ",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.471027387661845*^9, 3.471027406471869*^9}, {
+  3.472211649702709*^9, 3.472211653727561*^9}, {3.472211684894603*^9, 
+  3.47221168492157*^9}, {3.475944124256888*^9, 3.475944125574235*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"poly", " ", "=", 
+  RowBox[{"Sum", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Subscript", "[", 
+      RowBox[{"a", ",", "i"}], "]"}], 
+     RowBox[{"x", "^", "i"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "0", ",", "6"}], "}"}]}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["a", "0"], "+", 
+  RowBox[{"x", " ", 
+   SubscriptBox["a", "1"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "2"], " ", 
+   SubscriptBox["a", "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "3"], " ", 
+   SubscriptBox["a", "3"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "4"], " ", 
+   SubscriptBox["a", "4"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "5"], " ", 
+   SubscriptBox["a", "5"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "6"], " ", 
+   SubscriptBox["a", "6"]}]}]], "Output",
+ CellChangeTimes->{3.4673686931382*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Use ",
+ StyleBox["CoefficientList", "Literal"],
+ " to extract a list of coefficients of ",
+ StyleBox["poly", "Literal"],
+ "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CoefficientList", "[", 
+  RowBox[{"poly", ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["a", "0"], ",", 
+   SubscriptBox["a", "1"], ",", 
+   SubscriptBox["a", "2"], ",", 
+   SubscriptBox["a", "3"], ",", 
+   SubscriptBox["a", "4"], ",", 
+   SubscriptBox["a", "5"], ",", 
+   SubscriptBox["a", "6"]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686931612*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Use ",
+ StyleBox["MonomialList", "Literal"],
+ " to extract a list of the individual monomial terms of ",
+ StyleBox["poly", "Literal"],
+ "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", "poly", "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["a", "0"], ",", 
+   RowBox[{
+    SuperscriptBox["x", "6"], " ", 
+    SubscriptBox["a", "6"]}], ",", 
+   RowBox[{
+    SuperscriptBox["x", "5"], " ", 
+    SubscriptBox["a", "5"]}], ",", 
+   RowBox[{
+    SuperscriptBox["x", "4"], " ", 
+    SubscriptBox["a", "4"]}], ",", 
+   RowBox[{
+    SuperscriptBox["x", "3"], " ", 
+    SubscriptBox["a", "3"]}], ",", 
+   RowBox[{
+    SuperscriptBox["x", "2"], " ", 
+    SubscriptBox["a", "2"]}], ",", 
+   RowBox[{"x", " ", 
+    SubscriptBox["a", "1"]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686932172003`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "If you only want the variables of the polynomial, use ",
+ StyleBox["Variables", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.4710274492005463`*^9, 3.471027451149275*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Variables", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"x", "+", "1"}], ")"}], "^", "2"}], 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"y", "+", "3"}], ")"}], "^", "3"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"x", ",", "y"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686932412*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2"],
+
+Cell[TextData[{
+ "In addition to ",
+ StyleBox["CoefficientList", "Literal"],
+ ", you can pick coefficients that match a specific form using ",
+ StyleBox["Coefficient", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{3.471027461858982*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Coefficient", "[", 
+  RowBox[{
+   RowBox[{"8", "+", 
+    RowBox[{"12", " ", "x"}], "+", 
+    RowBox[{"6", " ", 
+     SuperscriptBox["x", "2"]}], "+", 
+    SuperscriptBox["x", "3"]}], ",", " ", 
+   RowBox[{"x", "^", "2"}]}], "]"}]], "Input"],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{3.4673686932642*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Coefficient", "Literal"],
+ " also takes a third argument, which specifies the power of the second \
+argument. So the same extraction can be done as shown here."
+}], "Text",
+ CellChangeTimes->{{3.471027472371812*^9, 3.471027481902281*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Coefficient", "[", 
+  RowBox[{
+   RowBox[{"8", "+", 
+    RowBox[{"12", " ", "x"}], "+", 
+    RowBox[{"6", " ", 
+     SuperscriptBox["x", "2"]}], "+", 
+    SuperscriptBox["x", "3"]}], ",", " ", "x", ",", "2"}], "]"}]], "Input"],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{3.4673686932872*^9}]
+}, Open  ]],
+
+Cell["\<\
+Conveniently, this also allows you to extract the constant term. \
+\>", "Text",
+ CellChangeTimes->{3.4710274902897387`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Coefficient", "[", 
+  RowBox[{
+   RowBox[{"8", "+", 
+    RowBox[{"12", " ", "x"}], "+", 
+    RowBox[{"6", " ", 
+     SuperscriptBox["x", "2"]}], "+", 
+    SuperscriptBox["x", "3"]}], ",", "x", ",", "0"}], "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output",
+ CellChangeTimes->{3.4673686933101997`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Returning to ",
+  FontTracking->"Plain"],
+ StyleBox["MonomialList", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", there is a third argument that allows you to change the order of \
+the monomials returned. The available orderings are ",
+  FontTracking->"Plain"],
+ StyleBox["\"Lexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", ",
+  FontTracking->"Plain"],
+ StyleBox["\"DegreeLexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", ",
+  FontTracking->"Plain"],
+ StyleBox["\"DegreeReverseLexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", ",
+  FontTracking->"Plain"],
+ StyleBox["\"NegativeLexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", ",
+  FontTracking->"Plain"],
+ StyleBox["\"Negative\[DiscretionaryHyphen]DegreeLexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[", and ",
+  FontTracking->"Plain"],
+ StyleBox["\"NegativeDegreeReverseLexicographic\"", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[". Refer to the documentation of ",
+  FontTracking->"Plain"],
+ StyleBox["MonomialList", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[" for definitions.",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{{3.4710274949513597`*^9, 3.471027495687581*^9}, 
+   3.47102804957513*^9, {3.476014094940868*^9, 3.4760140962510242`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"poly", " ", "=", " ", 
+  RowBox[{"Expand", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"x", "+", "2"}], ")"}], "^", "2"}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"y", "+", "3"}], ")"}], "^", "3"}]}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"108", "+", 
+  RowBox[{"108", " ", "x"}], "+", 
+  RowBox[{"27", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"108", " ", "y"}], "+", 
+  RowBox[{"108", " ", "x", " ", "y"}], "+", 
+  RowBox[{"27", " ", 
+   SuperscriptBox["x", "2"], " ", "y"}], "+", 
+  RowBox[{"36", " ", 
+   SuperscriptBox["y", "2"]}], "+", 
+  RowBox[{"36", " ", "x", " ", 
+   SuperscriptBox["y", "2"]}], "+", 
+  RowBox[{"9", " ", 
+   SuperscriptBox["x", "2"], " ", 
+   SuperscriptBox["y", "2"]}], "+", 
+  RowBox[{"4", " ", 
+   SuperscriptBox["y", "3"]}], "+", 
+  RowBox[{"4", " ", "x", " ", 
+   SuperscriptBox["y", "3"]}], "+", 
+  RowBox[{
+   SuperscriptBox["x", "2"], " ", 
+   SuperscriptBox["y", "3"]}]}]], "Output",
+ CellChangeTimes->{3.4673686933332*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", "\"\<DegreeLexicographic\>\""}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"9", " ", 
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"4", " ", "x", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"], " ", "y"}], ",", 
+   RowBox[{"36", " ", "x", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"]}], ",", 
+   RowBox[{"108", " ", "x", " ", "y"}], ",", 
+   RowBox[{"36", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"108", " ", "x"}], ",", 
+   RowBox[{"108", " ", "y"}], ",", "108"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686933562*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", "\"\<Lexicographic\>\""}], 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"9", " ", 
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"], " ", "y"}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"]}], ",", 
+   RowBox[{"4", " ", "x", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"36", " ", "x", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"108", " ", "x", " ", "y"}], ",", 
+   RowBox[{"108", " ", "x"}], ",", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"36", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"108", " ", "y"}], ",", "108"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686933812*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", 
+   "\"\<NegativeDegreeLexicographic\>\""}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"108", ",", 
+   RowBox[{"108", " ", "x"}], ",", 
+   RowBox[{"108", " ", "y"}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"]}], ",", 
+   RowBox[{"108", " ", "x", " ", "y"}], ",", 
+   RowBox[{"36", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"], " ", "y"}], ",", 
+   RowBox[{"36", " ", "x", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{"9", " ", 
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   RowBox[{"4", " ", "x", " ", 
+    SuperscriptBox["y", "3"]}], ",", 
+   RowBox[{
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "3"]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686934052*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "After using ",
+ StyleBox["MonomialList", "Literal"],
+ " to get the monomials in the desired order, you can display the polynomial \
+in that order using ",
+ StyleBox["HoldForm", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{3.4710275286999273`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"HoldForm", "[", 
+    RowBox[{"Plus", "[", "##", "]"}], "]"}], "&"}], " ", "@@", " ", 
+  RowBox[{"MonomialList", "[", 
+   RowBox[{"poly", ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}], ",", "\"\<Lexicographic\>\""}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "3"]}], "+", 
+   RowBox[{"9", " ", 
+    SuperscriptBox["x", "2"], " ", 
+    SuperscriptBox["y", "2"]}], "+", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"], " ", "y"}], "+", 
+   RowBox[{"27", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"4", " ", "x", " ", 
+    SuperscriptBox["y", "3"]}], "+", 
+   RowBox[{"36", " ", "x", " ", 
+    SuperscriptBox["y", "2"]}], "+", 
+   RowBox[{"108", " ", "x", " ", "y"}], "+", 
+   RowBox[{"108", " ", "x"}], "+", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["y", "3"]}], "+", 
+   RowBox[{"36", " ", 
+    SuperscriptBox["y", "2"]}], "+", 
+   RowBox[{"108", " ", "y"}], "+", "108"}],
+  HoldForm]], "Output",
+ CellChangeTimes->{3.4673686934282*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Heading2",
+ CellMargins->{{0, 36}, {0, 12}}],
+
+Cell[TextData[{
+ "You may also want to consider ",
+ StyleBox["CoefficientArrays", "Literal"],
+ " and ",
+ StyleBox["CoefficientRules", "Literal"],
+ ". See the Mathematica documentation for these functions."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["ChapterLabel"],
+ ".",
+ 
+ CounterBox["Heading1"],
+ "\[ThickSpace]\[ThickSpace]",
+ "Dividing Polynomials by Other Polynomials"
+}], "Heading1",
+ CellTags->"Dividing Polynomials"],
+
+Cell[CellGroupData[{
+
+Cell["Problem", "Heading2WithHeadAbove"],
+
+Cell["\<\
+You want to divide polynomials, find remainders, greatest common divisor \
+(GCD), or least common multiple (LCM). \
+\>", "Text",
+ CellChangeTimes->{{3.471027541852675*^9, 3.4710275701864433`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Heading2"],
+
+Cell[TextData[{
+ StyleBox["Use ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["PolynomialQuotient", "Literal",
+  FontTracking->"SemiCondensed"],
+ StyleBox[" or ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["PolynomialRemainder", "Literal",
+  FontTracking->"SemiCondensed"],
+ StyleBox[".",
+  FontTracking->"SemiCondensed"],
+ " If you need both, use ",
+ StyleBox["Polynomial\[DiscretionaryHyphen]QuotientRemainder", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.471028050738902*^9, {3.471029461768882*^9, 3.471029463709052*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialQuotient", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "^", "3"}], "+", 
+    RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", " ", 
+   RowBox[{"x", "+", "1"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1"}], "+", 
+  SuperscriptBox["x", "2"]}]], "Output",
+ CellChangeTimes->{3.4673686934512*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialRemainder", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "^", "3"}], "+", 
+    RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", " ", 
+   RowBox[{"x", "+", "1"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{3.4673686934732*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialQuotientRemainder", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "^", "3"}], "+", 
+    RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", " ", 
+   RowBox[{"x", "+", "1"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    SuperscriptBox["x", "2"]}], ",", "2"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686934972*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Heading2", "ProductionPageBreak"],
+
+Cell[TextData[{
+ "Mathematica also provides ",
+ StyleBox["PolynomialMod", "Literal"],
+ ", which uses an algorithm based on repeated subtraction and, hence, never \
+performs a division. In contrast, ",
+ StyleBox["Polynomial\[DiscretionaryHyphen]Remainder", "Literal"],
+ " is implemented in terms of ",
+ StyleBox["PolynomialQuotient", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.471027588942618*^9, 3.4710275941113377`*^9}, 
+   3.471027789456402*^9, {3.4710295271629667`*^9, 3.4710295287759457`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly", " ", "=", 
+      RowBox[{
+       RowBox[{"x", "^", "3"}], "+", 
+       RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}]}], ",", " ", 
+     RowBox[{"divisor", " ", "=", " ", 
+      RowBox[{"x", "^", "2"}]}]}], "}"}], ",", 
+   RowBox[{
+    RowBox[{"Simplify", "[", 
+     RowBox[{"poly", "-", 
+      RowBox[{"(", 
+       RowBox[{"divisor", "*", " ", 
+        RowBox[{"PolynomialQuotient", "[", 
+         RowBox[{"poly", ",", "divisor", ",", "x"}], "]"}]}], " ", ")"}]}], 
+     "]"}], " ", "===", 
+    RowBox[{"PolynomialRemainder", "[", 
+     RowBox[{"poly", ",", "divisor", ",", "x"}], "]"}]}]}], "]"}]], "Input"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.4673686935202*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "In many cases, ",
+ StyleBox["PolynomialMod", "Literal"],
+ " and ",
+ StyleBox["PolynomialRemainder", "Literal"],
+ " will return the same result. In particular, for univariate rational \
+polynomials, ",
+ StyleBox["PolynomialRemainder", "Literal"],
+ " is the same as ",
+ StyleBox["PolynomialMod", "Literal"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.4673654073324003`*^9, {3.471027814738738*^9, 3.471027826397253*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PolynomialMod", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", 
+    RowBox[{"x", "^", "2"}]}], "]"}], " ", "===", " ", 
+  RowBox[{"PolynomialRemainder", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", 
+    RowBox[{"x", "^", "2"}], ",", "x"}], "]"}]}]], "Input"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.4673686935432*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PolynomialMod", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", "x"}], "]"}], " ", "===", 
+  RowBox[{"PolynomialRemainder", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", "x", ",", "x"}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.4673686936001997`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "If the divisor is a constant or multivariate, the functions work \
+differently. In the case ",
+ StyleBox["of ",
+  FontTracking->"Extended"],
+ StyleBox["PolynomialMod", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[", a constant ",
+  FontTracking->"Extended"],
+ StyleBox["m", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[" reduces the coefficients module ",
+  FontTracking->"Extended"],
+ StyleBox["m", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[" whereas ",
+  FontTracking->"Extended"],
+ StyleBox["Polynomial", "Literal",
+  FontTracking->"Extended"],
+ StyleBox["\[DiscretionaryHyphen]Remainder", "Literal"],
+ " will always give 0."
+}], "Text",
+ CellChangeTimes->{{3.471027860052528*^9, 3.471027861007246*^9}, {
+  3.471029161308358*^9, 3.4710291637360287`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialMod", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"13", 
+     RowBox[{"x", "^", "3"}]}], "+", 
+    RowBox[{"15", 
+     RowBox[{"x", "^", "2"}]}], "-", 
+    RowBox[{"5", "x"}], "+", "7"}], ",", "7"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", " ", "x"}], "+", 
+  SuperscriptBox["x", "2"], "+", 
+  RowBox[{"6", " ", 
+   SuperscriptBox["x", "3"]}]}]], "Output",
+ CellChangeTimes->{3.4673686936232*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialRemainder", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "^", "3"}], "+", 
+    RowBox[{"x", "^", "2"}], "-", "x", "+", "1"}], ",", "7", ",", "x"}], 
+  "]"}]], "Input"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.4673686936462*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["In the multivariate case, ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["PolynomialMod", "Literal",
+  FontTracking->"SemiCondensed"],
+ StyleBox[" determines ",
+  FontTracking->"SemiCondensed"],
+ StyleBox["variable order based on ",
+  FontTracking->"Plain"],
+ StyleBox["OrderedQ", "Literal",
+  FontTracking->"Plain"],
+ StyleBox[".",
+  FontTracking->"Plain"]
+}], "Text",
+ CellChangeTimes->{3.471027889455789*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialMod", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{"x", "^", "3"}]}], "+", 
+    RowBox[{"2", "a", " ", 
+     RowBox[{"x", "^", "2"}]}], "-", 
+    RowBox[{"5", "ax"}], " ", "+", "1"}], ",", 
+   RowBox[{"x", "+", "a"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"1", "-", 
+  RowBox[{"5", " ", "ax"}], "-", 
+  RowBox[{"2", " ", 
+   SuperscriptBox["x", "3"]}], "-", 
+  SuperscriptBox["x", "4"]}]], "Output",
+ CellChangeTimes->{3.4673686936682*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialRemainder", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{"x", "^", "3"}]}], "+", 
+    RowBox[{"2", "a", " ", 
+     RowBox[{"x", "^", "2"}]}], "-", 
+    RowBox[{"5", "ax"}], " ", "+", "1"}], ",", 
+   RowBox[{"x", "+", "a"}], ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"1", "+", 
+  RowBox[{"2", " ", 
+   SuperscriptBox["a", "3"]}], "-", 
+  SuperscriptBox["a", "4"], "-", 
+  RowBox[{"5", " ", "ax"}]}]], "Output",
+ CellChangeTimes->{3.4673686936912003`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Both ",
+ StyleBox["PolynomialMod", "Literal"],
+ " and ",
+ StyleBox["PolynomialRemainder", "Literal"],
+ " allow you to compute the result module to a specific integer ",
+ StyleBox["n", "Literal"],
+ " by specifying the option ",
+ StyleBox["Modulus", "Literal"],
+ "\[RightArrow]",
+ StyleBox["n", "Literal"],
+ ". This means the computation is over the finite ring of integers",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    SubscriptBox["Z", "n"]}], TraditionalForm]]],
+ ". ",
+ StyleBox["The default is ",
+  FontTracking->"Extended"],
+ StyleBox["Modulus", "Literal",
+  FontTracking->"Extended"],
+ StyleBox["\[RightArrow]",
+  FontTracking->"Extended"],
+ StyleBox["0", "Literal",
+  FontTracking->"Extended"],
+ StyleBox[", meaning the infi",
+  FontTracking->"Extended"],
+ "nite set of integers."
+}], "Text", "ProductionPageBreak",
+ CellChangeTimes->{{3.471027903551365*^9, 3.471027918175706*^9}, 
+   3.4722120627325172`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialRemainder", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "^", "2"}], "+", 
+    RowBox[{"2", "x"}], "+", "2"}], ",", "x", ",", "x"}], "]"}]], "Input"],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{3.4673686937142*^9}]
+}, Open  ]],
+
+Cell["\<\
+Given these polynomial generalizations of division, it makes sense to discuss \
+GCD and LCM.\
+\>", "Text",
+ CellChangeTimes->{{3.47102793108556*^9, 3.471027968626829*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PolynomialGCD", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"10", 
+     RowBox[{"x", "^", "3"}]}], "+", "2"}], ",", 
+   RowBox[{
+    RowBox[{"30", 
+     RowBox[{"x", "^", "3"}]}], "+", "6"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"2", "+", 
+  RowBox[{"10", " ", 
+   SuperscriptBox["x", "3"]}]}]], "Output",
+ CellChangeTimes->{3.4673686937382*^9}]
+}, Open  ]],
+
+Cell["\<\
+Here we show that polynomials with coefficients with LCM less than the \
+product will result in polynomials with LCM different than their product.\
+\>", "Text",
+ CellChangeTimes->{3.471027987236948*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p1", "=", 
+      RowBox[{
+       RowBox[{"12", "x"}], " ", "+", " ", "18"}]}], ",", 
+     RowBox[{"p2", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"18", "x"}], "+", "24"}]}]}], "}"}], ",", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Expand", " ", "/@", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"PolynomialLCM", "[", 
+          RowBox[{"p1", ",", "p2"}], "]"}], ",", 
+         RowBox[{"p1", " ", "*", "p2"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"Dividers", "\[Rule]", "All"}]}], " ", "]"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     RowBox[{"72", "+", 
+      RowBox[{"102", " ", "x"}], "+", 
+      RowBox[{"36", " ", 
+       SuperscriptBox["x", "2"]}]}], 
+     RowBox[{"432", "+", 
+      RowBox[{"612", " ", "x"}], "+", 
+      RowBox[{"216", " ", 
+       SuperscriptBox["x", "2"]}]}]}
+   },
+   AutoDelete->False,
+   GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.4673686937622004`*^9}]
+}, Open  ]],
+
+Cell["Observe that ", "Text",
+ CellChangeTimes->{3.4710279995669518`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"LCM", "[", 
+    RowBox[{"18", ",", "24"}], "]"}], ",", 
+   RowBox[{"LCM", "[", 
+    RowBox[{"12", ",", "18"}], "]"}]}], "}"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"72", ",", "36"}], "}"}]], "Output",
+ CellChangeTimes->{3.4673686937852*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"612", "/", "102"}], " ", "\[Equal]", " ", 
+  RowBox[{"432", "/", "72"}], " ", "\[Equal]", " ", 
+  RowBox[{"216", "/", "36"}], " ", "\[Equal]", " ", 
+  RowBox[{"GCD", "[", 
+   RowBox[{"18", ",", "24", ",", "12"}], "]"}]}]], "Input"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.4673686938082*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+WindowToolbars->"EditBar",
+CellGrouping->Manual,
+WindowSize->{903, 660},
+WindowMargins->{{211, Automatic}, {Automatic, 39}},
+PrintingCopies->1,
+PrintingStartingPageNumber->413,
+PrintingPageRange->{1, Automatic},
+PageHeaders->{{None, None, None}, {None, None, None}},
+PageFooters->{{
+   Cell[
+    TextData[{
+      CounterBox["Page"], 
+      "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]Chapter ", 
+      CounterBox["ChapterLabel"], ":\[ThickSpace]\[ThickSpace]", "Algebra"}], 
+    "Footer"], None, None}, {None, None, 
+   Cell[
+    TextData[{
+      CounterBox[
+      "Page", CounterFunction :> (
+        Part[{"", 
+          "10.1\[ThickSpace]\[ThickSpace]Solving Algebraic Equations\
+\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.2\[ThickSpace]\[ThickSpace]Finding a Polynomial from a Given \
+Root\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.3\[ThickSpace]\[ThickSpace]Transforming Expressions to Other \
+Forms\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.3\[ThickSpace]\[ThickSpace]Transforming Expressions to Other \
+Forms\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.3\[ThickSpace]\[ThickSpace]Transforming Expressions to Other \
+Forms\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.4\[ThickSpace]\[ThickSpace]Generating Polynomials\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\[ThickSpace]", 
+          "10.5\[ThickSpace]\[ThickSpace]Decomposing Polynomials into Their \
+Constituent Parts\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]", 
+          "10.5\[ThickSpace]\[ThickSpace]Decomposing Polynomials into Their \
+Constituent Parts\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\
+\[ThickSpace]\[ThickSpace]", 
+          
+          "10.6\[ThickSpace]\[ThickSpace]Dividing Polynomials by Other \
+Polynomials\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.6\[ThickSpace]\[ThickSpace]Dividing Polynomials by Other \
+Polynomials\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]", 
+          "10.6\[ThickSpace]\[ThickSpace]Dividing Polynomials by Other \
+Polynomials\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]"}, # - CurrentValue[
+          InputNotebook[], PrintingStartingPageNumber] + 1]& )], 
+      CounterBox["Page"]}], "Footer"]}},
+PageHeaderLines->{False, False},
+PageFooterLines->{True, True},
+PrintingOptions->{"CellBackgroundHalftoneAngle"->Automatic,
+"CellBackgroundHalftoneDensity"->Automatic,
+"FacingPages"->True,
+"FirstPageFace"->"Right",
+"FirstPageFooter"->True,
+"FirstPageHeader"->False,
+"GraphicsPrintingFormat"->"Automatic",
+"IncludePostScriptResourceDirectives"->True,
+"IncludeSpecialFonts"->True,
+"Magnification"->1.,
+"OpacityRenderingMethod"->Automatic,
+"PageFooterMargins"->{24, 24},
+"PageHeaderMargins"->{36, 36},
+"PageSize"->{504, 661.5},
+"PaperOrientation"->"Portrait",
+"PaperSize"->{Automatic, Automatic},
+"PostScriptOutputFile"->Automatic,
+"PrintCellBrackets"->False,
+"PrintMultipleHorizontalPages"->False,
+"PrintRegistrationMarks"->True,
+"PrintSelectionHighlighting"->False,
+"PrintingMargins"->{{72, 72}, {72, 54}},
+"RasterizationResolution"->"Automatic",
+"RestPagesFooter"->True,
+"RestPagesHeader"->True,
+"UnixShellPrintingCommand"->Automatic,
+"UsePostScriptOutputFile"->False,
+"UseUnixShellPrintingCommand"->False,
+"VertexColorRenderingMethod"->Automatic},
+ShowSelection->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (February 18, 2009)",
+StyleDefinitions->"ora.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "chAlgebra"->{
+  Cell[545, 20, 147, 6, 63, "ChapterLabel",
+   CounterAssignments->{{"ChapterLabel", 10}},
+   CellTags->"chAlgebra"]},
+ "IntroductionCh10"->{
+  Cell[1521, 60, 173, 9, 63, "Heading1",
+   CellTags->"IntroductionCh10"]},
+ "Solving Algebraic Equations"->{
+  Cell[5919, 177, 199, 9, 63, "Heading1",
+   CellTags->"Solving Algebraic Equations"]},
+ "Finding a Polynomial From a Given Root"->{
+  Cell[12551, 434, 258, 9, 46, "Heading1",
+   CellTags->"Finding a Polynomial From a Given Root"]},
+ "TransformingExpressions"->{
+  Cell[18084, 633, 248, 10, 46, "Heading1",
+   CellTags->"TransformingExpressions"]},
+ "Generating Polynomials"->{
+  Cell[43908, 1528, 189, 9, 46, "Heading1",
+   CellTags->"Generating Polynomials"]},
+ "Decomposing Polynomials"->{
+  Cell[49578, 1742, 259, 10, 70, "Heading1",
+   CellTags->"Decomposing Polynomials"]},
+ "Dividing Polynomials"->{
+  Cell[63081, 2249, 206, 9, 46, "Heading1",
+   CellTags->"Dividing Polynomials"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"chAlgebra", 79524, 2818},
+ {"IntroductionCh10", 79666, 2822},
+ {"Solving Algebraic Equations", 79776, 2825},
+ {"Finding a Polynomial From a Given Root", 79909, 2828},
+ {"TransformingExpressions", 80039, 2831},
+ {"Generating Polynomials", 80154, 2834},
+ {"Decomposing Polynomials", 80269, 2837},
+ {"Dividing Polynomials", 80383, 2840}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 147, 6, 63, "ChapterLabel",
+ CounterAssignments->{{"ChapterLabel", 10}},
+ CellTags->"chAlgebra"],
+Cell[695, 28, 31, 0, 63, "ChapterTitle"],
+Cell[729, 30, 471, 20, 275, "Epigraph"],
+Cell[1203, 52, 293, 4, 60, "EpigraphAuthor"],
+Cell[CellGroupData[{
+Cell[1521, 60, 173, 9, 63, "Heading1",
+ CellTags->"IntroductionCh10"],
+Cell[1697, 71, 790, 14, 100, "Text"],
+Cell[2490, 87, 2623, 57, 213, "Text"],
+Cell[CellGroupData[{
+Cell[5138, 148, 28, 0, 75, "Heading2"],
+Cell[5169, 150, 701, 21, 44, "Text"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5919, 177, 199, 9, 63, "Heading1",
+ CellTags->"Solving Algebraic Equations"],
+Cell[CellGroupData[{
+Cell[6143, 190, 40, 0, 75, "Heading2WithHeadAbove"],
+Cell[6186, 192, 74, 0, 23, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6297, 197, 28, 0, 38, "Heading2"],
+Cell[6328, 199, 399, 11, 56, "Text"],
+Cell[CellGroupData[{
+Cell[6752, 214, 228, 7, 20, "Input"],
+Cell[6983, 223, 248, 8, 20, "Output"]
+}, Open  ]],
+Cell[7246, 234, 330, 7, 56, "Text"],
+Cell[CellGroupData[{
+Cell[7601, 245, 393, 14, 20, "Input"],
+Cell[7997, 261, 439, 15, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8473, 281, 362, 12, 20, "Input"],
+Cell[8838, 295, 410, 14, 36, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9297, 315, 43, 0, 25, "Heading2"],
+Cell[9343, 317, 636, 16, 72, "Text"],
+Cell[CellGroupData[{
+Cell[10004, 337, 303, 9, 20, "Input"],
+Cell[10310, 348, 101, 2, 20, "Output"]
+}, Open  ]],
+Cell[10426, 353, 224, 6, 23, "Text"],
+Cell[CellGroupData[{
+Cell[10675, 363, 208, 6, 20, "Input"],
+Cell[10886, 371, 116, 3, 23, "Output"]
+}, Open  ]],
+Cell[11017, 377, 463, 9, 72, "Text"],
+Cell[CellGroupData[{
+Cell[11505, 390, 306, 10, 20, "Input"],
+Cell[11814, 402, 160, 4, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12011, 411, 320, 10, 20, "Input"],
+Cell[12334, 423, 156, 4, 20, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12551, 434, 258, 9, 46, "Heading1",
+ CellTags->"Finding a Polynomial From a Given Root"],
+Cell[CellGroupData[{
+Cell[12834, 447, 40, 0, 26, "Heading2WithHeadAbove"],
+Cell[12877, 449, 526, 14, 40, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13440, 468, 28, 0, 38, "Heading2"],
+Cell[13471, 470, 257, 7, 40, "Text"],
+Cell[CellGroupData[{
+Cell[13753, 481, 272, 7, 20, "Input"],
+Cell[14028, 490, 173, 5, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14238, 500, 204, 6, 20, "Input"],
+Cell[14445, 508, 171, 6, 27, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14665, 520, 43, 0, 25, "Heading2"],
+Cell[14711, 522, 65, 0, 23, "Text"],
+Cell[CellGroupData[{
+Cell[14801, 526, 117, 3, 20, "Input"],
+Cell[14921, 531, 147, 4, 20, "Output"]
+}, Open  ]],
+Cell[15083, 538, 793, 21, 56, "Text"],
+Cell[CellGroupData[{
+Cell[15901, 563, 94, 2, 20, "Input"],
+Cell[15998, 567, 535, 9, 53, "Message"],
+Cell[16536, 578, 138, 3, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16711, 586, 96, 2, 20, "Input"],
+Cell[16810, 590, 535, 9, 53, "Message"],
+Cell[17348, 601, 138, 3, 20, "Output"]
+}, Open  ]],
+Cell[17501, 607, 223, 6, 23, "Text"],
+Cell[CellGroupData[{
+Cell[17749, 617, 135, 3, 20, "Input"],
+Cell[17887, 622, 136, 4, 20, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18084, 633, 248, 10, 46, "Heading1",
+ CellTags->"TransformingExpressions"],
+Cell[CellGroupData[{
+Cell[18357, 647, 40, 0, 26, "Heading2WithHeadAbove"],
+Cell[18400, 649, 667, 13, 56, "Text"]
+}, Open  ]],
+Cell[19082, 665, 51, 0, 25, "Heading2"],
+Cell[19136, 667, 1346, 37, 105, "Text"],
+Cell[20485, 706, 880, 27, 56, "Text"],
+Cell[CellGroupData[{
+Cell[21390, 737, 577, 16, 20, "Input"],
+Cell[21970, 755, 321, 11, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22328, 771, 549, 15, 20, "Input"],
+Cell[22880, 788, 338, 11, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23255, 804, 30, 0, 38, "Heading2"],
+Cell[23288, 806, 472, 10, 56, "Text"],
+Cell[CellGroupData[{
+Cell[23785, 820, 673, 21, 33, "Input"],
+Cell[24461, 843, 229, 7, 37, "Output"]
+}, Open  ]],
+Cell[24705, 853, 316, 7, 40, "Text"],
+Cell[CellGroupData[{
+Cell[25046, 864, 390, 11, 20, "Input"],
+Cell[25439, 877, 184, 6, 36, "Output"]
+}, Open  ]],
+Cell[25638, 886, 706, 19, 40, "Text"],
+Cell[CellGroupData[{
+Cell[26369, 909, 229, 6, 20, "Input"],
+Cell[26601, 917, 225, 8, 20, "Output"]
+}, Open  ]],
+Cell[26841, 928, 446, 9, 40, "Text"],
+Cell[CellGroupData[{
+Cell[27312, 941, 123, 2, 20, "Input"],
+Cell[27438, 945, 148, 4, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27623, 954, 192, 5, 20, "Input"],
+Cell[27818, 961, 323, 10, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28178, 976, 125, 2, 20, "Input"],
+Cell[28306, 980, 138, 4, 20, "Output"]
+}, Open  ]],
+Cell[28459, 987, 516, 16, 56, "Text"],
+Cell[CellGroupData[{
+Cell[29000, 1007, 230, 6, 20, "Input"],
+Cell[29233, 1015, 174, 5, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29444, 1025, 231, 6, 20, "Input"],
+Cell[29678, 1033, 361, 11, 20, "Output"]
+}, Open  ]],
+Cell[30054, 1047, 279, 8, 40, "Text"],
+Cell[CellGroupData[{
+Cell[30358, 1059, 615, 19, 32, "Input"],
+Cell[30976, 1080, 1434, 44, 38, "Output"]
+}, Open  ]],
+Cell[32425, 1127, 365, 11, 40, "Text"],
+Cell[CellGroupData[{
+Cell[32815, 1142, 232, 8, 20, "Input"],
+Cell[33050, 1152, 1047, 32, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34134, 1189, 266, 10, 20, "Input"],
+Cell[34403, 1201, 1090, 37, 37, "Output"]
+}, Open  ]],
+Cell[35508, 1241, 286, 6, 40, "Text"],
+Cell[CellGroupData[{
+Cell[35819, 1251, 324, 8, 20, "Input"],
+Cell[36146, 1261, 388, 12, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36571, 1278, 230, 6, 20, "Input"],
+Cell[36804, 1286, 540, 17, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37381, 1308, 201, 4, 20, "Input"],
+Cell[37585, 1314, 410, 13, 20, "Output"]
+}, Open  ]],
+Cell[38010, 1330, 463, 14, 40, "Text"],
+Cell[CellGroupData[{
+Cell[38498, 1348, 230, 5, 20, "Input"],
+Cell[38731, 1355, 252, 8, 20, "Output"]
+}, Open  ]],
+Cell[38998, 1366, 305, 6, 40, "Text"],
+Cell[CellGroupData[{
+Cell[39328, 1376, 263, 6, 20, "Input"],
+Cell[39594, 1384, 706, 22, 35, "Output"],
+Cell[40303, 1408, 666, 21, 35, "Output"]
+}, Open  ]],
+Cell[40984, 1432, 781, 23, 35, "Output"],
+Cell[41768, 1457, 296, 6, 40, "Text"],
+Cell[CellGroupData[{
+Cell[42089, 1467, 337, 9, 20, "Input"],
+Cell[42429, 1478, 369, 12, 35, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42847, 1496, 28, 0, 38, "Heading2"],
+Cell[42878, 1498, 475, 11, 56, "Text"],
+Cell[43356, 1511, 503, 11, 40, "Text"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43908, 1528, 189, 9, 46, "Heading1",
+ CellTags->"Generating Polynomials"],
+Cell[CellGroupData[{
+Cell[44122, 1541, 40, 0, 26, "Heading2WithHeadAbove"],
+Cell[44165, 1543, 115, 1, 23, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44317, 1549, 41, 0, 25, "Heading2"],
+Cell[44361, 1551, 459, 14, 23, "Text"],
+Cell[CellGroupData[{
+Cell[44845, 1569, 246, 8, 20, "Input"],
+Cell[45094, 1579, 405, 14, 20, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45548, 1599, 30, 0, 38, "Heading2"],
+Cell[45581, 1601, 378, 8, 56, "Text"],
+Cell[45962, 1611, 624, 18, 51, "Input"],
+Cell[CellGroupData[{
+Cell[46611, 1633, 141, 4, 20, "Input"],
+Cell[46755, 1639, 287, 9, 20, "Output"]
+}, Open  ]],
+Cell[47057, 1651, 102, 4, 23, "Text"],
+Cell[CellGroupData[{
+Cell[47184, 1659, 166, 5, 20, "Input"],
+Cell[47353, 1666, 291, 9, 20, "Output"]
+}, Open  ]],
+Cell[47659, 1678, 586, 14, 72, "Text"],
+Cell[48248, 1694, 779, 21, 67, "Input"],
+Cell[CellGroupData[{
+Cell[49052, 1719, 167, 5, 20, "Input"],
+Cell[49222, 1726, 317, 11, 20, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[49578, 1742, 259, 10, 70, "Heading1",
+ CellTags->"Decomposing Polynomials"],
+Cell[CellGroupData[{
+Cell[49862, 1756, 40, 0, 25, "Heading2WithHeadAbove"],
+Cell[49905, 1758, 188, 4, 40, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50130, 1767, 41, 0, 25, "Heading2"],
+Cell[50174, 1769, 906, 26, 40, "Text"],
+Cell[CellGroupData[{
+Cell[51105, 1799, 284, 9, 20, "Input"],
+Cell[51392, 1810, 563, 20, 20, "Output"]
+}, Open  ]],
+Cell[51970, 1833, 155, 6, 23, "Text"],
+Cell[CellGroupData[{
+Cell[52150, 1843, 94, 2, 20, "Input"],
+Cell[52247, 1847, 324, 10, 20, "Output"]
+}, Open  ]],
+Cell[52586, 1860, 169, 6, 23, "Text"],
+Cell[CellGroupData[{
+Cell[52780, 1870, 68, 1, 20, "Input"],
+Cell[52851, 1873, 608, 21, 20, "Output"]
+}, Open  ]],
+Cell[53474, 1897, 194, 5, 23, "Text"],
+Cell[CellGroupData[{
+Cell[53693, 1906, 230, 8, 20, "Input"],
+Cell[53926, 1916, 113, 3, 20, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54088, 1925, 30, 0, 38, "Heading2"],
+Cell[54121, 1927, 238, 7, 40, "Text"],
+Cell[CellGroupData[{
+Cell[54384, 1938, 264, 8, 20, "Input"],
+Cell[54651, 1948, 68, 1, 20, "Output"]
+}, Open  ]],
+Cell[54734, 1952, 265, 5, 40, "Text"],
+Cell[CellGroupData[{
+Cell[55024, 1961, 250, 7, 20, "Input"],
+Cell[55277, 1970, 68, 1, 20, "Output"]
+}, Open  ]],
+Cell[55360, 1974, 133, 3, 23, "Text"],
+Cell[CellGroupData[{
+Cell[55518, 1981, 245, 7, 20, "Input"],
+Cell[55766, 1990, 72, 1, 20, "Output"]
+}, Open  ]],
+Cell[55853, 1994, 1342, 38, 88, "Text"],
+Cell[CellGroupData[{
+Cell[57220, 2036, 270, 9, 20, "Input"],
+Cell[57493, 2047, 755, 23, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58285, 2075, 179, 5, 20, "Input"],
+Cell[58467, 2082, 799, 24, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59303, 2111, 173, 5, 20, "Input"],
+Cell[59479, 2118, 799, 24, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60315, 2147, 188, 5, 20, "Input"],
+Cell[60506, 2154, 799, 24, 20, "Output"]
+}, Open  ]],
+Cell[61320, 2181, 267, 8, 40, "Text"],
+Cell[CellGroupData[{
+Cell[61612, 2193, 299, 9, 20, "Input"],
+Cell[61914, 2204, 799, 25, 36, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62762, 2235, 62, 1, 35, "Heading2"],
+Cell[62827, 2238, 217, 6, 40, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63081, 2249, 206, 9, 46, "Heading1",
+ CellTags->"Dividing Polynomials"],
+Cell[CellGroupData[{
+Cell[63312, 2262, 40, 0, 26, "Heading2WithHeadAbove"],
+Cell[63355, 2264, 206, 4, 40, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63598, 2273, 28, 0, 38, "Heading2"],
+Cell[63629, 2275, 534, 16, 40, "Text"],
+Cell[CellGroupData[{
+Cell[64188, 2295, 227, 6, 20, "Input"],
+Cell[64418, 2303, 132, 4, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64587, 2312, 228, 6, 20, "Input"],
+Cell[64818, 2320, 68, 1, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64923, 2326, 236, 6, 20, "Input"],
+Cell[65162, 2334, 183, 6, 20, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65394, 2346, 53, 0, 25, "Heading2"],
+Cell[65450, 2348, 505, 11, 56, "Text"],
+Cell[CellGroupData[{
+Cell[65980, 2363, 707, 20, 51, "Input"],
+Cell[66690, 2385, 71, 1, 20, "Output"]
+}, Open  ]],
+Cell[66776, 2389, 433, 13, 56, "Text"],
+Cell[CellGroupData[{
+Cell[67234, 2406, 449, 13, 33, "Input"],
+Cell[67686, 2421, 71, 1, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67794, 2427, 398, 12, 33, "Input"],
+Cell[68195, 2441, 75, 1, 20, "Output"]
+}, Open  ]],
+Cell[68285, 2445, 793, 23, 56, "Text"],
+Cell[CellGroupData[{
+Cell[69103, 2472, 247, 8, 20, "Input"],
+Cell[69353, 2482, 195, 6, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69585, 2493, 202, 6, 20, "Input"],
+Cell[69790, 2501, 68, 1, 20, "Output"]
+}, Open  ]],
+Cell[69873, 2505, 438, 14, 23, "Text"],
+Cell[CellGroupData[{
+Cell[70336, 2523, 290, 9, 20, "Input"],
+Cell[70629, 2534, 206, 6, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70872, 2545, 306, 9, 20, "Input"],
+Cell[71181, 2556, 210, 6, 20, "Output"]
+}, Open  ]],
+Cell[71406, 2565, 936, 30, 72, "Text"],
+Cell[CellGroupData[{
+Cell[72367, 2599, 184, 5, 20, "Input"],
+Cell[72554, 2606, 68, 1, 20, "Output"]
+}, Open  ]],
+Cell[72637, 2610, 181, 4, 40, "Text"],
+Cell[CellGroupData[{
+Cell[72843, 2618, 231, 8, 20, "Input"],
+Cell[73077, 2628, 139, 4, 20, "Output"]
+}, Open  ]],
+Cell[73231, 2635, 212, 4, 40, "Text"],
+Cell[CellGroupData[{
+Cell[73468, 2643, 653, 20, 35, "Input"],
+Cell[74124, 2665, 529, 16, 25, "Output"]
+}, Open  ]],
+Cell[74668, 2684, 73, 1, 23, "Text"],
+Cell[CellGroupData[{
+Cell[74766, 2689, 188, 6, 20, "Input"],
+Cell[74957, 2697, 115, 3, 20, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75109, 2705, 266, 6, 20, "Input"],
+Cell[75378, 2713, 71, 1, 20, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

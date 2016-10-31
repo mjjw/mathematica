@@ -1,0 +1,7 @@
+These notebook files were derived from those used to create the print and ebook versions of Mathematica Cookbook. They are fully functional Mathematica notebooks but they have were optimized for the creation of hard copy. The author edited them somewhat to make them a bit more user friendly by removing hard line breaks and changing the default screen environment to "Working".Note that the file ora.nb is the stylesheet. This is required to be either in the same directory as the notebooks or be placed in $InstallationDirectory/SystemFiles/FrontEnd/StyleSheets where $InstallationDirectory is the directory where Mathematica is installed. You can get this by evaluating $InstallationDirectory in the front end. You may also like to explore this stylesheet to learn more than the book covers on the topic.The notebook files do not include front and back matter content because they were prepared separately with InDesign CS4.
+
+For legal reasons, we cannot include the fonts used to typeset this book.
+
+Disclaimer: These notebooks are provided for advanced users. We cannot support installation or troubleshooting of the stylesheets or the notebooks files in general. The author maintains a Mathematica Cookbook Facebook page where you can ask questions, or provide feedback:
+
+http://www.facebook.com/Mathematica.Cookbook

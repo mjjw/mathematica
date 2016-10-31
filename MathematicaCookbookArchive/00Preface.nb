@@ -1,0 +1,937 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     45169,        928]
+NotebookOptionsPosition[     41161,        821]
+NotebookOutlinePosition[     41708,        842]
+CellTagsIndexPosition[     41665,        839]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Preface", "ChapterTitle"],
+
+Cell[CellGroupData[{
+
+Cell["Introduction", "Heading1",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+If you were stranded on a desert island with only your laptop (and presumably \
+a large solar panel) what software would you want to have with you? For me \
+the answer definitely includes that latest version of Wolfram Mathematica. \
+Whether you are a scientist, engineer, mathematician, Wall Street quant, \
+statistician, programmer, or even artist or musician, you will be a better \
+one if you have this tool at your disposal. Of course, having a tool and \
+knowing how to use it well are quite different things. That is why I wrote \
+the Mathematica Cookbook. \
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.4678038818064795`*^9, 3.4678038900654793`*^9}}],
+
+Cell["\<\
+I am a big fan of O'Reilly Cookbooks. These books are designed to help you \
+solve real world problems. Mathematica is an ideal candidate for a cookbook \
+because it is so vast, deep and full of traps for the novice. I was ecstatic \
+to learn that O'Reilly was looking to publish a Mathematica Cookbook and even \
+more excited when I was chosen to be its author. I have been a user of \
+Mathematica since version 3.0. Although that was over 13 years ago, I still \
+remember the frustration of trying to solve problems in this system. I don't \
+mean this in a derogatory way. The frustration  a newbie experiences  when \
+trying to learn Mathematica comes from the knowledge that you are sitting in \
+front of a highly advanced computational platform that is eventually going to \
+magnify your productivity tenfold if you can only wrap your mind around its \
+unfamiliar idioms. If you are a new (or even not so new) user of Mathematica \
+today you are simultaneously in a better and much worse position than I was \
+in version 3.0. You are in a better position because Mathematica 7.0 is \
+vastly more powerful than 3.0 was back then. Not only have the number of \
+available functions doubled but Mathematica has fundamental new capabilities \
+including dynamic interactivity, curated data sources, parallel processing, \
+image processing and much more. You are in a worse position because there is \
+much more to learn! However, as Mathematica grows it largely remains \
+unchanged in its core principles.  \
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{
+  3.467839070560733*^9, {3.4678494494139013`*^9, 3.467849452122135*^9}}],
+
+Cell["\<\
+This book is designed to help you master Mathematica's core principles by \
+presenting it in the context of real world problems. However, my goal was not \
+just to show you how to solve problems in Mathematica but to show you how to \
+do so in a way that plays to Mathematica's strengths. This means there is an \
+emphasis on symbolic, functional and pattern-based styles of programming. \
+Mathematica is a multi-paradigm programming language. You can easily write \
+code in it that a Fortran or C programmer would have little trouble \
+following. However, the procedural style that this entails is not likely to \
+give you good performance. More importantly, it will often cause you to write \
+more code than necessary and spend more time adapting that code to future \
+problems. Stephen Wolfram has said that a correct Mathematica program is \
+often a short Mathematica program. There is much truth to this. The truth \
+come from the idea that good Mathematica programs leverage the capabilities \
+of the vast library of both general purpose and highly specialized functions \
+that are built-in. Programming in Mathematica is a search for the right \
+combination of primitives. My hope is that this Cookbook will play a role as \
+your guide.\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{3.4678390803204517`*^9, 3.4678998156354094`*^9}]
+}, Open  ]],
+
+Cell["MathematicaCookbook.com", "Heading2",
+ CellChangeTimes->{{3.467899074587976*^9, 3.467899081955537*^9}, {
+   3.467899112684799*^9, 3.467899126181241*^9}, 3.46789982364954*^9, {
+   3.467900331277443*^9, 3.467900346244982*^9}}],
+
+Cell[TextData[{
+ "One risk of authoring a cookbook is that it is almost inevitable that \
+something someone finds important will be left out. With the Mathematica, \
+this risk is a certainty because even as I wrote this book, Mathematica's \
+capabilities grew. However, even if one drew a line at, say, version 6.0, \
+there is still a large number of topics that I do not cover for various \
+reasons. To remedy this and to create a living resource which I hope the \
+Mathematica community will help nourish, I am launching ",
+ StyleBox["http://mathematicacookbook.com", "URL"],
+ ". Here you will find recipes that did not make it into this book. More \
+importantly you will also be able rate recipes, to contribute your own or \
+provide alternative implementations to those found in this book or on the \
+site."
+}], "Text",
+ CellChangeTimes->{{3.467898605769014*^9, 3.4678986182332993`*^9}, {
+  3.46789865325884*^9, 3.467898898892666*^9}, {3.467898960464323*^9, 
+  3.467899037545988*^9}, {3.4678996053200073`*^9, 3.467899652801944*^9}, {
+  3.467899684444015*^9, 3.467899751695715*^9}, {3.467899826883505*^9, 
+  3.4678998360037518`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Structure of This Book", "Heading1",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+
+Cell["\<\
+The Mathematica Cookbook is not necessarily meant to be read from start to \
+finish like a conventional book (although you are certainly welcome to do \
+so!). Having said that, the chapters are organized in a purposefully way. \
+Chapters 1 through 8 present general techniques that all users of Mathematica \
+should know. These chapters are largely self contained but sometimes it is \
+necessary to use features in one chapter that are covered more deeply in \
+another. Cross-references within each recipe as well as a function recipe \
+cross reference at the start of the book should prevent you from getting \
+stuck. However, keep in mind that a cookbook is not the same as a tutorial \
+and you should also make frequent use of the Mathematica reference, tutorials \
+and guides that are integrated into Mathematica's help system. Chapters 9 \
+through 14 cover specific domains of Mathematica application. If you are the \
+type of person who learns best by examples from your area of expertise, you \
+will benefit from seeing the techniques of the first chapters leveraged in \
+problems related to physics, engineering, calculus, statistics, music, \
+finance and more. Finally, chapters 15 through 19 cover important techniques, \
+extensions and tools that make Mathematica unrivaled as a technical software \
+development tool. \
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467849486230101*^9, 3.467849489699486*^9}, {
+  3.468064631307413*^9, 3.4680646446980543`*^9}, {3.4680646881241503`*^9, 
+  3.468064797000382*^9}}],
+
+Cell[TextData[{
+ StyleBox["Chapter 1", "Emphasis"],
+ " covers numerics. For the most part, Mathematica simply does the right \
+thing when computing numeric results as you would expect. In pure mathematics \
+numbers are formal objects that are well behaved but when you represent \
+numbers in a finite discrete device like a computer you will often need to \
+understand issues of precision and accuracy in order to get reasonable \
+results on certain classes of problems. Further, numbers have different \
+representations in Mathematica (Integers, Rationals, Complex and some exotic \
+types like Intervals). Then there is an issue of input and presentation. \
+Mathematica supports different base representations and different display \
+formats. This chapter has recipes that cover all these issues and it is wise \
+to have some familiarity with them before using any of the numeric \
+algorithms.\n\nFunctional programming is a style of Mathematica development \
+that most seasoned users prefer. ",
+ StyleBox["Chapter 2", "Emphasis"],
+ " dives deeply into Functional Programming, Mathematica style. Because \
+Mathematica was designed to support multiple development paradigms, its \
+functional programming abilities are not as pure as languages like Haskell. \
+This is actually a big plus because if you are using Mathematica chance are \
+you are solving a problem and its the solution rather than the aesthetics \
+that are foremost in your mind. Mathematica programmers prefer the functional \
+style because it leads to efficient programs. It also leads to elegant \
+programs. In the context of programming, elegant means the combination of \
+brevity, power and clarity. There is amazing sense of intellectual \
+satisfaction that come form finding a concise functional solution and this \
+feeling creates the positive feedback that will draw you into Mathematica. \
+However, this style is often mysterious to people who come to Mathematica \
+from other languages like Fortran, C, Mathlab or Microsoft Excel. I think \
+this chapter will help you discover the rewards of the functional style."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467849544757915*^9, 3.46784954896572*^9}}],
+
+Cell[TextData[{
+ StyleBox["Chapter 3", "Emphasis"],
+ " presents Mathematica data structures which are largely built on the \
+foundation of lists. From lists, Mathematica derives matrices and higher \
+order tensors, sparse matrices, and more. Knowing how to manipulate these \
+structures is essential for almost any application of Mathematica. This is \
+obvious if you are doing linear algebra but list processing is integral to \
+almost every facet of use. This chapter also shows how to implement other \
+types of data structures such as a Dictionary that leverages the fast \
+associative look-up that is part of Mathematica's evaluation engine. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+
+Cell[TextData[{
+ "Pattern-based programming revolves around pattern matching and \
+transformation. ",
+ StyleBox["Chapter 4", "Emphasis"],
+ " introduces the Mathematica's rich Pattern based techniques. Patterns are  \
+not a feature must mainstream languages but is tremendously powerful and a \
+must know technique if you hope to accomplish anything non-trivial in \
+Mathematica. Of all the techniques at your disposal, pattern-matching and \
+replacement is the one that is the most likely to yield the \"wow\" reaction \
+you get when you see a seemingly simple looking piece of code do something \
+not so simple. To whet your appetite, here is one of my favorites. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467848749552167*^9, 3.4678489449743347`*^9}, {
+  3.4678492306016407`*^9, 3.467849270620603*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"runEncode", "[", "l_List", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"#", ",", "1"}], "}"}], "&"}], " ", ",", "l"}], "]"}], " ", "//.",
+    " ", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"head___", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x_", ",", "n_"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x_", ",", " ", "m_"}], "}"}], ",", " ", "tail___"}], "}"}], 
+    " ", "\[RuleDelayed]", " ", 
+    RowBox[{"{", 
+     RowBox[{"head", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", 
+        RowBox[{"n", "+", "m"}]}], "}"}], ",", " ", "tail"}], 
+     "}"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.4678489499698353`*^9, 3.467849118121481*^9}, {
+  3.467849155165494*^9, 3.467849162043158*^9}},
+ CellLabel->"In[190]:="],
+
+Cell[TextData[{
+ "In this little diddy by Frank Zizza (which won a programming contest at the \
+1990 Wolfram conference) the goal is to take a list and return the list in \
+run length encoded form. ",
+ StyleBox["Don't worry if this code seems cryptic; it won't after you have \
+recipes from chapters 2 and 4 under your belt.", "Footnote"],
+ " For example, input ",
+ StyleBox["{1, 1, 2, 2, 2, 1, 3, 3, 3, 3}", "Literal"],
+ " should produce ",
+ StyleBox["{{1, 2}, {2, 3}, {1, 1}, {3, 4}}", "Literal"]
+}], "Text",
+ CellChangeTimes->{{3.467849282749119*^9, 3.46784931261257*^9}, {
+  3.4678972301959343`*^9, 3.4678972313080053`*^9}, {3.467897263493514*^9, 
+  3.467897345152359*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"runEncode", "[", 
+  RowBox[{"{", 
+   RowBox[{
+   "1", ",", " ", "1", ",", " ", "2", ",", " ", "2", ",", " ", "2", ",", "1", 
+    ",", "3", ",", "3", ",", "3", ",", "3"}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.467849166580265*^9, 3.467849182172352*^9}},
+ CellLabel->"In[191]:="],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "4"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.467849196307403*^9},
+ CellLabel->"Out[191]="]
+}, Open  ]],
+
+Cell["\<\
+Although you can create small solutions to this problem in languages like \
+Python or Ruby, I find this solution compelling because it contains no \
+explicit looping construct and, once you learn to read it, contains a very \
+explicit and statement of the problem. \
+\>", "Text",
+ CellChangeTimes->{{3.46806932577452*^9, 3.468069452720161*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Chapter 5", "Emphasis"],
+ " covers string manipulation which is more important than you might first  \
+guess for a language that is primarily associated with numeric and symbolic \
+mathematics. Mathematica has a rich set of string manipulation primitives \
+that include all the typical functions you expect (",
+ StyleBox["StringLength", "Literal"],
+ ", ",
+ StyleBox["StringReplace", "Literal"],
+ ", ",
+ StyleBox["StringInsert", "Literal"],
+ " and so forth) plus an extension of its pattern language specifically \
+designed for strings and including regular expression based transformations. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+
+Cell[TextData[{
+ "One of Mathematica's best capabilities is integrated graphics. ",
+ StyleBox["Chapter 6", "Emphasis"],
+ " dives into 2 dimensional plots and  graphics. There are many packages that \
+let you create plots but few are so seamless integrated into the same \
+development environment where you write code. This integration is an amazing \
+productivity tool. I frequently find myself using ",
+ StyleBox["Plot", "Literal"],
+ " and other graphing functions simply as a means to help understand an \
+equation or algorithm I am developing and not necessarily because I am \
+creating a presentation to be viewed by others. The fact that functions like ",
+ StyleBox["Plot", "Literal"],
+ ", ",
+ StyleBox["ListPlot", "Literal"],
+ " and ",
+ StyleBox["ParametricPlot", "Literal"],
+ " give good results with little effort means they can become part of your \
+day-to-day interaction with Mathematica. But if you need professionally \
+designed graphics for an important paper or presentation, you will not be \
+disappointed because there are options to customize every aspect of the \
+presentation. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+
+Cell[TextData[{
+ StyleBox["Chapter 7", "Emphasis"],
+ " builds on 6 by moving into the more sexy domain of 3D graphics and plots. \
+Plotting in 3D provides you with additional visualization and interaction \
+capabilities. All 3D graphics can be rotated, panned and zoomed \
+interactively. There are also many sophisticated options that let you adjust \
+every aspect of the plot including shading, mesh, coloring, camera angles, \
+how light reflects of the surface and so on. No every user will want to tweak \
+all of theses settings but if you are a graphics artist or aficionado you \
+will have a lot of fun once you master all the options. This chapter will \
+give you a leg up on this important dimension of Mathematica's power."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{3.467839089407378*^9}],
+
+Cell[TextData[{
+ StyleBox["Chapter 8", "Emphasis"],
+ " covers image processing which is the first of the special purpose \
+chapters. Native image processing functions were added in Mathematica 7.0 and \
+you can have quite a bit of fun transforming images programmatically as you \
+do by hand in software like Photoshop. This chapter also shows some advanced \
+image processing techniques where I write a large part of the algorithms in \
+Mathematica rather than relying on the built-in functions. This provides \
+readers who are interested in image processing a guide to approaching image \
+algorithm development in Mathematica but also provides some deeper insight \
+into those who know little about these algorithms"
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{
+  3.4678391098736477`*^9, {3.4678961470352287`*^9, 3.4678961475777493`*^9}, 
+   3.4678971955478973`*^9}],
+
+Cell[TextData[{
+ StyleBox["Chapter 9", "Emphasis"],
+ " will give you  respite form all the eye-candy by providing some ear-candy. \
+You may not know it but Mathematica is  quite the musician and I was happy to \
+have John Kiehl, a professional musician and recording studio owner write \
+this chapter for you. Mathematica can turn functions into sound, play notes, \
+chords, and electronic versions of a variety of musical instruments. Further \
+it can import MIDI files and other audio formats. You can perform various \
+operations on sound such as Fourier transforms. There is really few limits \
+and John is an experienced guide providing lots of recipes for the musically \
+inclined to expand upon and the not so musically inclined to educate \
+themselves with (or just play with for fun). This chapter is available for \
+you immediate listening pleasure at ",
+ StyleBox["http : // www.oreilly.com/catalog/9780596521004", "URL"]
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467839134249387*^9, 3.4678391575953417`*^9}, 
+   3.467896173933023*^9, 3.467897197668068*^9, {3.467897533059424*^9, 
+   3.4678976002295218`*^9}, 3.4678981109949083`*^9, 3.4678983647381144`*^9, 
+   3.4678998608704576`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Chapter 10", "Emphasis"],
+ " returns to more mathematical fare by diving into Mathematica's formidable \
+abilities in symbolic math. This chapter focuses on algebraic manipulation \
+and solutions to equations. Many of the recipes show techniques for massaging \
+results produced by Mathematica into equivalent but sometimes more desirable \
+forms."
+}], "Text",
+ CellChangeTimes->{{3.467896202331561*^9, 3.467896308975955*^9}, {
+  3.4678963459682426`*^9, 3.46789647228997*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Symbolic and numerical calculus is what most people think about when they \
+think about Mathematica and ",
+ StyleBox["Chapter 11", "Emphasis"],
+ " dives into Mathematica's formidable (many say unrivaled)  capabilities in \
+this domain. Here you will see recipes related to computing limits, \
+derivatives, integrals, vector calculus and the solution to differential \
+equations. The chapter also covers the increasingly important domain of \
+discrete calculus including sums, products and difference equations. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467839162578504*^9, 3.46783916575451*^9}, 
+   3.46789588451208*^9, {3.467896498641478*^9, 3.467896600267602*^9}}],
+
+Cell[TextData[{
+ "There is high probability that the average  technical person will need to \
+do some statistics! Puns aside, ",
+ StyleBox["Chapter 12 ", "Emphasis"],
+ "has recipes that will help you get a handle on Mathematica's formidable \
+statistical capabilities that rival other special purpose stats packages. \
+This chapter has recipes for common statistical measures, probability \
+distributions, data fitting, interpolation and more sophisticated tools like \
+ANOVA. It also introduces stochastic simulation."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.4678391757648373`*^9, 3.467839181986422*^9}, 
+   3.4678958819041843`*^9}],
+
+Cell["\<\
+Chapter 13 enters the realm of applied math by diving into physics and \
+engineering. These domains are extremely broad and so I make no attempt to \
+cover a large swath but rather cherry pick recipes that show applications of \
+the mathematical tools discussed in preceding chapters. I also show recipes \
+that demonstrate general techniques for organizing programs that have many \
+variables. In addition, this recipe shows how educators and others can draw \
+on Mathematica's access to curated data related to physics, chemistry and \
+biology.\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{
+  3.467839185427526*^9, 3.467895879879776*^9, {3.467898389498041*^9, 
+   3.467898541679469*^9}}],
+
+Cell[TextData[{
+ StyleBox["Chapter 14", "Emphasis"],
+ " jumps bravely into the risky business of numerical finance. The goal of \
+this chapter is to show quants and others interested in mathematical finance \
+how to leverage Mathematica's strengths in applying common financial \
+algorithms. This chapter presents problems of mild to moderate sophistication \
+so that the illustration of Mathematica techniques is not lost in the \
+potentially large complexity of modern computational finance. A large part of \
+this chapter is the results of the efforts of Andreas Lauschke who is expert \
+in both computational finance and Mathematica. "
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467839196309732*^9, 3.467839200427576*^9}, {
+   3.4678496116804867`*^9, 3.46785014501276*^9}, 3.467895888288535*^9, {
+   3.467899870076421*^9, 3.467899872308421*^9}, {3.467900491844006*^9, 
+   3.4679005120048027`*^9}}],
+
+Cell[TextData[{
+ "Version 6.0 brought new excitement to the Mathematica world with the \
+addition of dynamic interactivity. For the first time a Mathematica user had \
+the capability to create notebook output then changed in response to changes \
+in underlying variables. In many ways this ability parallels the new types of \
+dynamic web pages that emerged around the same time (so called Web 2.0). But \
+I digress. ",
+ StyleBox["Chapter 15", "Emphasis"],
+ " introduces the primitives underlying this new dynamic interactivity. \
+Amazingly, there are just 3 main ingredients to this capability: ",
+ StyleBox["Manipulate", "Literal"],
+ ", ",
+ StyleBox["Dynamic", "Literal"],
+ " and ",
+ StyleBox["DynamicModule", "Literal"],
+ ". As with many of Mathematica's advanced features you will master the easy \
+use cases immediately because the primitives just do the right thing. More \
+advanced application will require some steep learning but this chapter has a \
+many recipes that will help you get there. For your immediate gratification, \
+this chapter is available at ",
+ StyleBox["http : // www.oreilly.com/catalog/9780596521004", "URL"]
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.4678960475755587`*^9, 3.467896049998229*^9}, {
+   3.467898125688064*^9, 3.467898176612813*^9}, 3.4678998786073227`*^9}],
+
+Cell[TextData[{
+ "Computers with multiple cores (processing elements) are common place and \
+there is a good chance you own a computer with at least two cores and if you \
+bought one recently, perhaps even four or more. My Mac Pro has 8. Mathematica \
+stays ahead of this trend by bundling Parallel Processing with version 7.0. ",
+ StyleBox["Chapter 16", "Emphasis"],
+ " introduces contains recipes that show you how to use these features. \
+Mathematica makes it easy to add parallelism to your programs but this does \
+not mean your algorithms will run four times faster if you have four \
+processors. To get any speed up at all you need to understand how the \
+parallel primitives work and how they can be tuned. The recipes in this \
+chapter show you how to configure parallelism, parallelize existing serial \
+programs and also implement more sophisticated parallel techniques like \
+Map-Reduce and parallel pipelines."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467839210445853*^9, 3.467839230529017*^9}, 
+   3.467895876432951*^9, {3.467896623732419*^9, 3.467896624220332*^9}}],
+
+Cell[TextData[{
+ "As powerful as Mathematica is, there are times when you need something \
+else. ",
+ StyleBox["Chapter 17", "Emphasis"],
+ " will show you how to interface Mathematica to other languages and \
+programs. Here programmers will learn how to integrate code written in C, \
+Java and .NET languages. This chapter also has recipes for integrating \
+Mathematica with database systems and third party tools like spread sheets."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.467839235213047*^9, 3.467839240637384*^9}, 
+   3.467895873495447*^9, {3.467896635789207*^9, 3.467896636869169*^9}}],
+
+Cell[TextData[{
+ StyleBox["Chapter 18", "Emphasis"],
+ " is called ",
+ StyleBox["Tricks of the Trade", "Emphasis"],
+ " and includes material that every Mathematica user should know but that did \
+not quite fit anywhere else in the book. Here I introduce recipes on \
+performance, packaging, stylesheets and other important techniques."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{{3.4678392437178164`*^9, 3.467839248478456*^9}, 
+   3.46789586855995*^9, {3.467896651917541*^9, 3.4678966529893923`*^9}, {
+   3.4678968203084497`*^9, 3.467896821291894*^9}, {3.467896911633532*^9, 
+   3.4678970151148663`*^9}, {3.4678970627104*^9, 3.467897113526765*^9}}],
+
+Cell[TextData[{
+ "Last but by no means least, you will want to know to how to debug your way \
+out of those nasty situations where you just can't figure out why you are \
+getting strange error messages or bizarre results. ",
+ StyleBox["Chapter 19", "Emphasis"],
+ " presents debugging techniques and possibly more important, unit testing \
+techniques. An important part of this chapter is Wolfram Workbench, the \
+alternative development environment based on Eclipse (an open source IDE \
+designed to be customizable to different languages)."
+}], "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.},
+ CellChangeTimes->{
+  3.4678392525889463`*^9, {3.467896676126506*^9, 3.467896757313101*^9}}]
+}, Open  ]],
+
+Cell["Acknowledgments", "Heading1",
+ CellChangeTimes->{{3.467804360515479*^9, 3.4678043660444794`*^9}, 
+   3.4678392562530518`*^9}],
+
+Cell["\<\
+The Mathematica Cookbook was one of my most challenging projects and it is \
+not something I could have accomplished without the support of many people. \
+Although I would have never survived with out this help, any problems, errors \
+or omissions in the final product are mine alone.\
+\>", "Text",
+ CellChangeTimes->{{3.467832443520495*^9, 3.467832546903893*^9}, {
+   3.467836084400255*^9, 3.467836193180653*^9}, 3.467839258725766*^9}],
+
+Cell["\<\
+First I must thank Maryka Baraka of Wolfram research for first turning me on \
+to this project, arranging my first visit to Wolfram Research and most \
+importantly for introducing me to many valuable people on the Wolfram staff. \
+Over the course of this project, Maryka fielded dozens of queries and \
+directed them to where they needed to go in the Wolfram organization. Her \
+advice and support were invaluable. Maryka, your the best! \
+\>", "Text",
+ CellChangeTimes->{{3.467832443520495*^9, 3.4678328196172132`*^9}, {
+  3.467832854226859*^9, 3.467832991657207*^9}, {3.467833086500404*^9, 
+  3.4678331127408323`*^9}, {3.467839264686337*^9, 3.467839269766347*^9}}],
+
+Cell["\<\
+Theo Gray of Wolfram answered many questions and provided much support \
+including a personal tutorial of some of the advanced features of \
+Mathematica's Manipulate and Dynamic functionality. He was also instrument in \
+my visiting Wolfram so that I could preview Mathematica 7 before its release. \
+This improved the book tremendously.    \
+\>", "Text",
+ CellChangeTimes->{{3.467832992367755*^9, 3.46783304294565*^9}, {
+  3.467833124028928*^9, 3.467833212504429*^9}, {3.46783324352201*^9, 
+  3.467833270570895*^9}, {3.467833425905051*^9, 3.467833546397552*^9}, {
+  3.467839281654725*^9, 3.467839283502983*^9}}],
+
+Cell["\<\
+Many other Wolfram folks answered questions and provided valuable suggestions \
+and support. So many, in fact, that I fear I may leave someone out. At the \
+risk of that, I must personally acknowledge Larry Adelston, Chris Carlson, \
+Joy Costa,, Lou D'Andria, John Fultz, Roger Germundsson, Bradley Harden, \
+Jason Harris, Tom Wickham Jones, Andre Kuzniarek,   Misty Moseley,  Peter \
+Overmann, Schoeller Porter, Michael Trot, and  Eric W. Weisstein. Also thanks \
+to Stephen Wolfram for creating and nurturing Mathematica for all these years.\
+\>", "Text",
+ CellChangeTimes->{{3.4678335698684187`*^9, 3.46783381807971*^9}, {
+  3.4678338614422503`*^9, 3.467833940748506*^9}, {3.467833973528707*^9, 
+  3.467834085338358*^9}, {3.4678341986477947`*^9, 3.467834216567347*^9}, {
+  3.467834368643107*^9, 3.467834378621818*^9}, {3.4678345396220303`*^9, 
+  3.467834563517375*^9}, {3.4678347292210608`*^9, 3.467834773933517*^9}, {
+  3.46783488605298*^9, 3.4678351187391148`*^9}, {3.467835169520782*^9, 
+  3.467835254199909*^9}}],
+
+Cell["\<\
+Working with O'Reilly for the second time has proved to be just as rewarding \
+as the first. First and foremost, a big thank you to my editor, Michael \
+Loukides, whose support and patience were without bound (even when I whined \
+about this and that as us nitpicking authors so often do!). Michael provided \
+great perspective as he read and commented on each chapter and he helped me \
+to understand many points that were awkward or would trip up a beginner.  In \
+addition, Abby Fox, Keith Fahlgren and Adam Witwer provided valuable help in \
+the early stages of production. Also thanks to Simon St. Laurent, the editor \
+of my first cookbook, for his glowing recommendation.\
+\>", "Text",
+ CellChangeTimes->{{3.467835300577817*^9, 3.467835302241699*^9}, {
+  3.4678353598214903`*^9, 3.467835609950059*^9}, {3.4678359047254972`*^9, 
+  3.4678360667357073`*^9}, {3.467836223605777*^9, 3.467836286856192*^9}, {
+  3.467838786705758*^9, 3.467838848244199*^9}, {3.4678393003923893`*^9, 
+  3.467839311672803*^9}}],
+
+Cell["\<\
+Instrumental to improving the quality of many recipes were the technical \
+critique and corrections from Larry Stead, Gregory Frascadore and Andreas \
+Lauschke. Not only did these reviewers correct mistakes but they also offered \
+better implementations on several recipes. Again, remaining defects or \
+inadequacies are the fault of the author alone.\
+\>", "Text",
+ CellChangeTimes->{{3.467804917850479*^9, 3.4678049185984793`*^9}, {
+  3.46783232274164*^9, 3.4678323253335733`*^9}, {3.467836348106955*^9, 
+  3.467836498920734*^9}, {3.467838939025941*^9, 3.467838963265753*^9}, {
+  3.4679001104212303`*^9, 3.467900168221806*^9}, {3.467900211360072*^9, 
+  3.4679002666898203`*^9}}],
+
+Cell["\<\
+Portions of this book would simply not exists without the generous \
+contributions from John Kiehl (Soundtrack Studios), Andreas Lauschke (Andreas \
+Lauschke Consulting), Thomas Webber (Webber and Partner), Chris Carlson \
+(Wolfram), and Ulises Cervantes-Pimentel (Wolfram). Special thanks to John \
+Kiehl whose unique combination of musical and Mathematica abilities resulted \
+in the entertaining and educational  Music and Audio Processing chapter. \
+Special thanks to  Andreas Lauschke for much of the material in the Financial \
+Engineering chapter.\
+\>", "Text",
+ CellChangeTimes->{{3.4678049193454795`*^9, 3.4678049193564796`*^9}, {
+   3.4678058946834793`*^9, 3.4678058979714794`*^9}, 3.467836419957507*^9, {
+   3.467836528225615*^9, 3.4678366386255493`*^9}, {3.4678366742495327`*^9, 
+   3.467836682855433*^9}, {3.467836731747797*^9, 3.467836735577367*^9}, {
+   3.467836818767725*^9, 3.467837062014832*^9}, {3.467837096706243*^9, 
+   3.467837127082312*^9}, {3.467837161451645*^9, 3.467837275526827*^9}, {
+   3.467838991235793*^9, 3.4678389976122828`*^9}}],
+
+Cell["\<\
+I must also thank Kirsten Dennison and her staff at Precision Graphics for \
+arriving to solve the final production issues and seeing this book into \
+print. Also, thanks again to Larry Adelston of Wolfram for assisting \
+Kirsten's team with stylesheet production and other automation.\
+\>", "Text",
+ CellChangeTimes->{{3.4678047838984795`*^9, 3.467804827513479*^9}, {
+   3.4678059371614795`*^9, 3.4678059412024794`*^9}, {3.467837307143998*^9, 
+   3.467837490367403*^9}, 3.4678380802866*^9, 3.467839011900185*^9}],
+
+Cell["\<\
+Thanks also to my colleagues who offered both moral and technical support \
+during this project. In particular I would like to thank Doug Finke whose \
+conversations are always uplifting and Kalani Thielen who always seems to \
+know what I need every time I ask. \
+\>", "Text",
+ CellChangeTimes->{{3.467805027612479*^9, 3.4678050312604795`*^9}, {
+  3.4678050919724793`*^9, 3.467805096140479*^9}, {3.467837515464574*^9, 
+  3.467837734440662*^9}, {3.467837771347581*^9, 3.4678378088994617`*^9}, {
+  3.467837916649851*^9, 3.467838023243945*^9}, {3.467839014716322*^9, 
+  3.467839026948655*^9}}],
+
+Cell["\<\
+Although the folks above were crucial, the most important ingredient that \
+went into this cookbook was the love, patience and support of my family. In \
+particular, to my wonderful wife Wanda for enduring a second book project \
+which never seemed to be coming to an end and for all the things small and \
+large that she did for me and our family when I was busy working on it. She \
+deserves more than I can ever put into words. Also to my two boys, Leonardo \
+and Salvatore who had to give up quite a bit of our personal play time so I \
+could get this beast out the door.  This book is dedicated to you guys.  \
+Thanks also to my parents, family and friends who provided so much support \
+throughout my life and who cheered me on and lifted my spirits. 
+\
+\>", "Text",
+ CellChangeTimes->{{3.4678050541934795`*^9, 3.467805059763479*^9}, 
+   3.467837650317916*^9, 3.4678376820313263`*^9, 3.467837745601225*^9, {
+   3.4678380921107197`*^9, 3.467838478181984*^9}, {3.467838511015527*^9, 
+   3.467838540088039*^9}, {3.4678386175791693`*^9, 3.467838678965439*^9}, {
+   3.467839029366089*^9, 3.4678390356787043`*^9}, {3.467893324783411*^9, 
+   3.467893331209134*^9}, 3.467893442234619*^9}],
+
+Cell["Conventions Used in This Book", "Heading1"],
+
+Cell[TextData[{
+ "The following typographical conventions are used in this book :\
+\[LineSeparator] ",
+ StyleBox["Italic", "Techical Italic"],
+ "\n\tIndicates new terms, URLs, email addresses, filenames, and file \
+extensions.\[LineSeparator]\[LineSeparator]",
+ StyleBox["Constant width", "Literal"],
+ "\n\tUsed for program listings, as well as within paragraphs to refer to \
+program elements such as variable or function names, databases, data types, \
+environment variables, statements, and \tkeywords.\n\[LineSeparator]",
+ StyleBox["Constant width bold", "UserInput",
+  FontWeight->"Bold"],
+ "\n\tShows commands or other text that should be typed literally by the \
+user.\[LineSeparator]\[LineSeparator]",
+ StyleBox["Constant width italic", "UserInput",
+  FontSlant->"Italic"],
+ "\n\tShows text that should be replaced with user - supplied values or by \
+values determined by context.\[LineSeparator]\[LineSeparator]",
+ StyleBox["[INSERT ICON] ",
+  Background->RGBColor[1, 1, 0]],
+ "This icon signifies a tip, suggestion, or general note.\[LineSeparator]\
+\[LineSeparator]",
+ StyleBox["[INSERT ICON]",
+  Background->RGBColor[1, 1, 0]],
+ " This icon indicates a warning or caution."
+}], "Text",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.467893410906865*^9}, {
+   3.467893448034307*^9, 3.4678934500049257`*^9}, {3.4678939120694113`*^9, 
+   3.4678940407758904`*^9}, {3.467894071608986*^9, 3.467894140590417*^9}, {
+   3.467894184777749*^9, 3.467894189413156*^9}, {3.467894227150854*^9, 
+   3.467894242135518*^9}}],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.4678934141431007`*^9}}],
+
+Cell["Using Code Examples", "Heading1",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.467893416751227*^9}}],
+
+Cell["\<\
+This book is here to help you get your job done.In general, you may use the \
+code in this book in your programs and documentation.You do not need to \
+contact us for permission unless you\[CloseCurlyQuote] re reproducing a \
+significant portion of the code.For example, writing a program that uses \
+several chunks of code from this book does not require permission.Selling or \
+distributing a CD - ROM of examples from O\[CloseCurlyQuote] Reilly books \
+does not require permission. Answering a question by citing this book and \
+quoting example code does not require permission. Incorporating a significant \
+amount of example code from this book into your product\[CloseCurlyQuote]s \
+documentation does require permission.\
+\>", "Text",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.467893416751227*^9}, {
+   3.467893460275157*^9, 3.467893497818993*^9}, {3.467893541499956*^9, 
+   3.467893543406654*^9}}],
+
+Cell["\<\
+We appreciate, but do not require, attribution. An attribution usually \
+includes the title, author, publisher, and ISBN. For example: \
+\[OpenCurlyDoubleQuote]Book Title by Some Author. Copyright 2008 O\
+\[CloseCurlyQuote]Reilly Media, Inc., 978-0-596-xxxx-x.\
+\[CloseCurlyDoubleQuote]\
+\>", "Text",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.467893416751227*^9}, {
+   3.467893460275157*^9, 3.467893497818993*^9}, {3.467893541499956*^9, 
+   3.467893543403902*^9}}],
+
+Cell["\<\
+If you feel your use of code examples falls outside fair use or the \
+permission given above, feel free to contact us at permissions@oreilly.com.
+\
+\>", "Text",
+ CellChangeTimes->{
+  3.46789332025698*^9, {3.4678934109041033`*^9, 3.467893416751227*^9}, {
+   3.467893460275157*^9, 3.467893497818993*^9}, 3.467893541499956*^9, 
+   3.467899925957848*^9}],
+
+Cell["Safari\[RegisteredTrademark] Enabled", "Heading1",
+ CellChangeTimes->{3.467893598001086*^9}],
+
+Cell[TextData[{
+ StyleBox["[INSERT ICON] ",
+  Background->RGBColor[1, 1, 0]],
+ " When you see a Safari\[RegisteredTrademark] Enabled icon on the cover of \
+your favorite technology book, that means the book is available online \
+through the O\[CloseCurlyQuote] Reilly Network Safari Bookshelf.Safari offers \
+a solution that\[CloseCurlyQuote] s better than e - \
+books.It\[CloseCurlyQuote] s a virtual library that lets you easily search \
+thousands of top tech books, cut and paste code samples, download chapters, \
+and find quick answers when you need the most accurate, current \
+information.Try it for free at ",
+ StyleBox["http:/safari.oreilly.com", "URL"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.467893598001086*^9, {3.467894303445142*^9, 3.4678943045005903`*^9}, {
+   3.4678999374241667`*^9, 3.4678999516220016`*^9}}],
+
+Cell["How to Contact Us", "Heading1",
+ CellChangeTimes->{{3.467893641465869*^9, 3.467893649735989*^9}}],
+
+Cell["\<\
+Please address comments and questions concerning this book to the publisher : \
+\>", "Text",
+ CellChangeTimes->{{3.467893684514867*^9, 3.467893684517269*^9}}],
+
+Cell["\<\
+\tO\[CloseCurlyQuote] Reilly Media, Inc.\[LineSeparator]\t1005 Gravenstein \
+Highway \[LineSeparator]\tNorth Sebastopol, CA 95472 \[LineSeparator]\t800 - \
+998 - 9938 (in the United States or Canada) \[LineSeparator]\t707 - 829 - \
+0515 (international or local) \[LineSeparator]\t707 829 - 0104 (fax)\
+\>", "Text",
+ CellChangeTimes->{{3.467893684514867*^9, 3.467893724877511*^9}, {
+  3.467893812454681*^9, 3.4678938174947033`*^9}}],
+
+Cell[TextData[{
+ "We have a web page for this book, where we list errata, examples, and any \
+additional information.You can access this page at : \[LineSeparator]\t",
+ StyleBox["http://www.oreilly.com/catalog/9780596521004 ", "URL"],
+ "\[LineSeparator]\[LineSeparator]To comment or ask technical questions about \
+this book, send email to : \[LineSeparator]\t",
+ StyleBox["bookquestions@oreilly.com", "URL"],
+ "\n\[LineSeparator]For more information about our books, conferences, \
+Resource Centers, and the O\[CloseCurlyQuote] Reilly Network, see our web \
+site at : \[LineSeparator]\t",
+ StyleBox["http://www.oreilly.com", "URL"]
+}], "Text",
+ CellChangeTimes->{{3.467893684514867*^9, 3.46789380595218*^9}, {
+  3.467893852153757*^9, 3.4678938561397057`*^9}, {3.467900397479204*^9, 
+  3.467900407367518*^9}}]
+},
+AutoGeneratedPackage->None,
+WindowToolbars->"EditBar",
+WindowSize->{1264, 709},
+WindowMargins->{{62, Automatic}, {Automatic, 87}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (February 18, 2009)",
+StyleDefinitions->"ora.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 31, 0, 76, "ChapterTitle"],
+Cell[CellGroupData[{
+Cell[601, 24, 85, 1, 55, "Heading1",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[689, 27, 711, 11, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[1403, 40, 1676, 24, 139, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[3082, 66, 1388, 20, 123, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}]
+}, Open  ]],
+Cell[4485, 89, 230, 3, 44, "Heading2"],
+Cell[4718, 94, 1136, 18, 76, "Text"],
+Cell[CellGroupData[{
+Cell[5879, 116, 95, 1, 55, "Heading1",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[5977, 119, 1574, 23, 123, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[7554, 144, 2220, 32, 204, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[9777, 178, 713, 11, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[10493, 191, 850, 14, 74, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}]
+}, Open  ]],
+Cell[11358, 208, 860, 26, 91, "Input"],
+Cell[12221, 236, 677, 13, 62, "Text"],
+Cell[CellGroupData[{
+Cell[12923, 253, 309, 7, 33, "Input"],
+Cell[13235, 262, 356, 12, 33, "Output"]
+}, Open  ]],
+Cell[13606, 277, 354, 6, 42, "Text"],
+Cell[CellGroupData[{
+Cell[13985, 287, 684, 14, 60, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[14672, 303, 1163, 22, 96, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[15838, 327, 838, 13, 74, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[16679, 342, 908, 15, 74, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[17590, 359, 1241, 19, 92, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}]
+}, Open  ]],
+Cell[18846, 381, 503, 9, 42, "Text"],
+Cell[CellGroupData[{
+Cell[19374, 394, 731, 12, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[20108, 408, 680, 12, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[20791, 422, 740, 13, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[21534, 437, 945, 15, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[22482, 454, 1344, 24, 94, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[23829, 480, 1126, 17, 90, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[24958, 499, 636, 11, 42, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[25597, 512, 688, 12, 42, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}],
+Cell[26288, 526, 699, 12, 58, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10001.}]
+}, Open  ]],
+Cell[27002, 541, 131, 2, 55, "Heading1"],
+Cell[27136, 545, 446, 7, 42, "Text"],
+Cell[27585, 554, 676, 10, 58, "Text"],
+Cell[28264, 566, 622, 10, 42, "Text"],
+Cell[28889, 578, 1029, 15, 58, "Text"],
+Cell[29921, 595, 1018, 15, 74, "Text"],
+Cell[30942, 612, 690, 11, 42, "Text"],
+Cell[31635, 625, 1072, 16, 58, "Text"],
+Cell[32710, 643, 523, 8, 42, "Text"],
+Cell[33236, 653, 601, 10, 42, "Text"],
+Cell[33840, 665, 1196, 18, 90, "Text"],
+Cell[35039, 685, 49, 0, 55, "Heading1"],
+Cell[35091, 687, 1541, 31, 293, "Text"],
+Cell[36635, 720, 110, 2, 25, "Text"],
+Cell[36748, 724, 131, 2, 55, "Heading1"],
+Cell[36882, 728, 943, 15, 74, "Text"],
+Cell[37828, 745, 502, 10, 42, "Text"],
+Cell[38333, 757, 360, 8, 42, "Text"],
+Cell[38696, 767, 98, 1, 55, "Heading1"],
+Cell[38797, 770, 827, 16, 60, "Text"],
+Cell[39627, 788, 103, 1, 55, "Heading1"],
+Cell[39733, 791, 168, 3, 25, "Text"],
+Cell[39904, 796, 441, 7, 107, "Text"],
+Cell[40348, 805, 809, 14, 145, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
